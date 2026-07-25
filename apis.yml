@@ -1,0 +1,60 @@
+name: We > Ultrarich
+description: >-
+  A free, non-commercial tool and public API that visualize extreme wealth inequality by comparing any wealth to
+  ultrarich/billionaire/trillionaire wealth through four lenses: Duration Of Daily Spend, Height Of Stacked Money,
+  Number Of Items Paid For, and Growth Of Compound Interest. All comparisons are deterministic arithmetic returning
+  ready-to-quote figures, sentences, and them-vs-you ratios; no user data is collected.
+url: https://we-ultrarich.apievangelist.com/apis.yml
+created: '2026-07-25'
+modified: '2026-07-25'
+specificationVersion: '0.21'
+tags:
+  - wealth inequality
+  - economic inequality
+  - finance
+  - economics
+  - education
+  - journalism
+  - open data
+  - comparison
+  - mcp
+  - model context protocol
+  - agents
+apis:
+  - name: We > Ultrarich REST API
+    description: >-
+      Free, no-auth read-only REST API returning JSON wealth-comparison computations across four lenses plus a combined
+      them-vs-you comparison. Rate limited to 100 requests per minute.
+    humanURL: https://api.wegtultrarich.org/
+    baseURL: https://api.wegtultrarich.org/v1
+    tags:
+      - wealth inequality
+      - economic inequality
+      - finance
+      - economics
+      - education
+      - journalism
+      - open data
+      - comparison
+      - mcp
+      - model context protocol
+      - agents
+    properties:
+      - type: OpenAPI
+        url: https://api.wegtultrarich.org/openapi.yaml
+      - type: Documentation
+        url: https://api.wegtultrarich.org/README.md
+      - type: LLMSTxt
+        url: https://wegtultrarich.org/llms.txt
+      - type: LLMSTxt
+        url: https://wegtultrarich.org/llms-full.txt
+      - type: MCP
+        url: https://api.wegtultrarich.org/mcp
+maintainers:
+  - FN: Blonde Rocket Scientist LLC
+    url: https://wegtultrarich.org/
+generated:
+  by: apis.io/add
+  model: claude-opus-4-8
+  confidence: 97
+  at: '2026-07-25T22:40:48.114Z'
