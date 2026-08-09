@@ -1,0 +1,125 @@
+generated: '2026-08-09'
+method: searched
+source: https://api.wegtultrarich.org/README.md
+also_derived_from:
+  - openapi/we-ultrarich-openapi-original.yml
+  - mcp/we-ultrarich-tools-list.json
+  - live response headers observed 2026-08-09 on https://api.wegtultrarich.org/v1/comparison
+authentication:
+  style: none
+  detail: >-
+    No authentication, no account, no API key, on either the REST API or the MCP server. Technical request
+    data is processed transiently for rate limiting, security and operations only.
+  see_also: authentication/we-ultrarich-authentication.yml
+http:
+  methods: [GET]
+  detail: Every REST operation is a read-only GET with query parameters; there are no write operations.
+  cors:
+    allow_origin: '*'
+    expose_headers: [RateLimit-Policy, RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, Retry-After]
+    detail: Browser-side code, including generated artifacts and canvases, can call the API directly.
+  security_headers_observed: [x-content-type-options]
+idempotency:
+  supported: true
+  mechanism: safe-method
+  header: null
+  detail: >-
+    There is no Idempotency-Key contract because there is nothing to make idempotent by key — the whole
+    surface is safe GET operations over deterministic arithmetic, so any request may be repeated freely
+    with an identical result. The provider states this explicitly in machine-readable form: every MCP tool
+    carries the annotations `readOnlyHint: true`, `idempotentHint: true` and `openWorldHint: false`, and
+    successful REST responses are declared cacheable (`Cache-Control: public, max-age=3600`).
+  evidence:
+    - source: mcp/we-ultrarich-tools-list.json
+      detail: 'all 5 tools declare annotations.idempotentHint = true and annotations.readOnlyHint = true'
+    - source: openapi/we-ultrarich-openapi-original.yml
+      detail: 'all 6 operations are GET; no POST/PUT/PATCH/DELETE exists'
+    - source: 'live response headers'
+      detail: 'cache-control: public, max-age=3600, stale-while-revalidate=86400'
+  retry_guidance: >-
+    Retries are always safe. On 429 honour Retry-After (authoritative) rather than recomputing from
+    RateLimit-Reset.
+pagination:
+  supported: false
+  detail: >-
+    No collection endpoint paginates. `/expressions` returns the full array of available routes in one
+    response; every other operation returns a single computed object.
+field_expansion:
+  supported: false
+metadata:
+  supported: false
+request_tracing:
+  request_id_header: null
+  detail: The provider documents no request-id / correlation header.
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.wegtultrarich.org/v1
+  release_versioning: semver
+  detail: >-
+    The REST path is pinned at /v1. Product releases follow Semantic Versioning and Keep a Changelog
+    (spec/info.version 1.4.0 as of 2026-08-05). MCP tool and parameter DESCRIPTIONS are treated as part of
+    the interface — changes to them ship as minor versions because they alter how models select and call
+    tools even when the schema is unchanged.
+  mcp_protocol_negotiation: >-
+    The MCP endpoint answers revisions 2025-03-26, 2025-06-18, 2025-11-25 and 2026-07-28 from the same URL;
+    on 2026-07-28 the client selects a revision per request and must send Mcp-Method and Mcp-Name headers.
+  see_also: lifecycle/we-ultrarich-lifecycle.yml
+response_envelope:
+  rest_success: '{"status":"success","data":{...}}'
+  rest_error: '{"status":"error","error":{"code":<int>,"message":"<prose>"}}'
+  mcp: >-
+    An MCP tool result is the bare data object with an added `attribution` field — NOT the REST envelope,
+    and with no `status` field. Check the client error flag (CallToolResult.isError /
+    mcp_tool_result.is_error) instead.
+  result_object_fields:
+    - {field: value, type: number, purpose: 'raw numeric result, for arithmetic — not for display'}
+    - {field: unit, type: 'string|null', purpose: 'unit of value'}
+    - {field: type, type: 'string|null', purpose: 'result subtype — kind of stacked money or item'}
+    - {field: phrase, type: string, purpose: 'short title-cased statement, for labels and headings'}
+    - {field: sentence, type: string, purpose: 'complete sentence-cased statement, for quoting'}
+    - {field: scale, type: 'string|null', purpose: 'real-world context; NULL by design when the result is too small to anchor — branch on it, never print null'}
+  quoting_rules:
+    - Quote `sentence`; do not rebuild prose from `value`.
+    - Do not re-round `value` — the prose fields already apply the project rounding conventions.
+    - Branch on `scale`; omit the line when null rather than inventing a substitute.
+  see_also: errors/we-ultrarich-problem-types.yml
+input_conventions:
+  money_values:
+    accepted: ['plain numbers (1000000000)', 'formatted numbers (1,000,000,000)', 'shorthand (1B, 750B, 1T)']
+    rejected: ['words ("one billion") — convert first']
+    currency: >-
+      A currency symbol is a prefix and a label only, never a conversion. For heightOfMoneyStack the
+      typeOfMoney slug's currency overrides any symbol supplied on wealth.
+  parameter_case: camelCase in both REST query parameters and MCP tool input fields; MCP TOOL names are snake_case.
+  bounds:
+    rate: exclusive 0 < rate < 1, never clamped
+    period: exclusive 0 < period < 100, never clamped
+rate_limits:
+  signalling: standard RateLimit-* header family on EVERY response, not only 429s
+  headers:
+    - {header: RateLimit-Policy, example: '100;w=60', meaning: quota and window in seconds}
+    - {header: RateLimit-Limit, example: '100', meaning: requests permitted per window}
+    - {header: RateLimit-Remaining, example: '99', meaning: requests left in the current window}
+    - {header: RateLimit-Reset, example: '60', meaning: seconds until the window resets (rounds down)}
+    - {header: Retry-After, meaning: 'seconds until reset; authoritative on a 429'}
+  legacy_aliases:
+    - {header: X-RateLimit-Limit, note: same value as RateLimit-Limit}
+    - {header: X-RateLimit-Remaining, note: same value as RateLimit-Remaining}
+    - {header: X-RateLimit-Reset, note: 'EXCEPTION — Unix epoch timestamp, rounds up; can disagree with RateLimit-Reset by a second'}
+  caching_caveat: >-
+    A response served from cache carries the RateLimit-* values from when it was stored — treat them as a
+    hint, not a ledger; a 429 is the authoritative signal.
+  see_also: rate-limits/we-ultrarich-rate-limits.yml
+attribution:
+  required: true
+  string: 'Source: We > Ultrarich (wegtultrarich.org).'
+  detail: >-
+    Results are licensed CC BY 4.0 and free to reuse, including commercially, with attribution. MCP tool
+    results embed the exact `attribution` string — use it verbatim rather than composing your own.
+  naming: 'Write the name as `We > Ultrarich`, or `We Are Greater Than The Ultrarich` where > will not render. Use `wegtultrarich` in identifiers.'
+documentation_authority:
+  - openapi.yaml is normative for REST paths, parameters, schemas, status codes and response structures
+  - README.md is the explanatory reference for behavior, examples and MCP access
+  - agent-prompt.md and llms-full.txt are derived task-oriented guidance
+  - llms.txt and apis.json are discovery indexes

@@ -1,0 +1,24 @@
+generated: '2026-08-09'
+method: generated
+skills:
+  - file: we-ultrarich-them-vs-you-comparison.md
+    name: Compare a person's wealth against ultrarich wealth
+    api: openapi/we-ultrarich-openapi-original.yml
+    operations: [comparison]
+    mcp_tools: [comparison]
+    method: generated
+  - file: we-ultrarich-make-a-sum-tangible.md
+    name: Make a single sum of money tangible
+    api: openapi/we-ultrarich-openapi-original.yml
+    operations: [expressions, durationOfDailySpend, heightOfMoneyStack, numberOfItems, growthOfCompoundInterest]
+    mcp_tools: [duration_of_daily_spend, height_of_money_stack, number_of_items, growth_of_compound_interest]
+    method: generated
+  - file: we-ultrarich-agent-prompt.md
+    name: We > Ultrarich Agent Prompt (provider-published)
+    method: searched
+    source: https://api.wegtultrarich.org/prompts/agent-prompt.md
+    note: >-
+      Saved VERBATIM. The provider publishes its own task-oriented agent guidance — endpoint choice,
+      quoting results, input traps — and indexes it in its apis.json as type AgentPrompt. This is the
+      authoritative agent instruction; the two generated skills above package it against verified
+      operationIds.

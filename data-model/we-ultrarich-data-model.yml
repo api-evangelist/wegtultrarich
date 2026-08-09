@@ -1,0 +1,79 @@
+generated: '2026-08-09'
+method: derived
+source: openapi/we-ultrarich-openapi-original.yml
+note: >-
+  The OpenAPI declares every schema inline — components.schemas is empty — so the entities below are the
+  recurring inline shapes named by their role. There are no persisted resources and therefore no ids, no
+  id-prefixes and no foreign keys: this is a stateless computation API, and the "relationships" are
+  composition within a single response payload.
+entities:
+  - name: SuccessEnvelope
+    description: Wrapper on every successful REST response.
+    fields:
+      - {name: status, type: string, note: 'always "success"'}
+      - {name: data, type: 'Result | ComparisonResult | ExpressionList'}
+  - name: ErrorEnvelope
+    description: Wrapper on every REST error response.
+    fields:
+      - {name: status, type: string, note: 'always "error"'}
+      - {name: error, type: Error}
+  - name: Error
+    fields:
+      - {name: code, type: integer, note: mirrors the HTTP status (400 or 429)}
+      - {name: message, type: string, note: 'prose parameter name + category, e.g. "Wealth Malformed"'}
+      - {name: details, type: string, note: 429 only}
+      - {name: retryAfter, type: integer, note: 429 only, seconds}
+    see_also: errors/we-ultrarich-problem-types.yml
+  - name: Result
+    description: >-
+      The universal wealth-expression result. Returned by durationOfDailySpend, heightOfMoneyStack,
+      numberOfItems and growthOfCompoundInterest, and nested twice inside ComparisonResult.
+    fields:
+      - {name: value, type: number}
+      - {name: unit, type: 'string|null'}
+      - {name: type, type: 'string|null'}
+      - {name: phrase, type: string}
+      - {name: sentence, type: string}
+      - {name: scale, type: 'string|null', note: 'null by design when the result is too small to anchor'}
+  - name: Ratio
+    description: The direction-aware them-vs-you ratio, returned only by /comparison.
+    fields:
+      - {name: value, type: number}
+      - {name: phrase, type: string, note: 'e.g. "10,000,000 : 1"'}
+      - {name: sentence, type: string, note: 'e.g. "Their wealth is 10,000,000 times yours."'}
+      - {name: scale, type: 'string|null', note: '"That''s extreme wealth inequality." at ratios of 200:1 or more'}
+  - name: ComparisonResult
+    description: The /comparison data object.
+    fields:
+      - {name: expression, type: string, note: echoed so the payload is self-describing}
+      - {name: resultYours, type: Result}
+      - {name: resultTheirs, type: Result}
+      - {name: ratio, type: Ratio}
+  - name: ExpressionList
+    description: The /expressions data array — the one endpoint whose data is an array.
+    fields:
+      - {name: route, type: string, note: 'path to each available wealth expression, e.g. /v1/durationOfDailySpend'}
+  - name: MCPToolResult
+    description: >-
+      The MCP projection of Result / ComparisonResult — the bare data object with an added attribution
+      string, NOT wrapped in the REST envelope.
+    fields:
+      - {name: attribution, type: string, note: 'Source: We > Ultrarich (wegtultrarich.org).'}
+relationships:
+  - {from: SuccessEnvelope, to: Result, kind: has_one, via: data}
+  - {from: SuccessEnvelope, to: ComparisonResult, kind: has_one, via: data}
+  - {from: SuccessEnvelope, to: ExpressionList, kind: has_many, via: data}
+  - {from: ErrorEnvelope, to: Error, kind: has_one, via: error}
+  - {from: ComparisonResult, to: Result, kind: has_many, via: 'resultYours, resultTheirs'}
+  - {from: ComparisonResult, to: Ratio, kind: has_one, via: ratio}
+  - {from: MCPToolResult, to: Result, kind: has_one, via: 'inlined (bare object)'}
+operations_by_entity:
+  Result: [durationOfDailySpend, heightOfMoneyStack, numberOfItems, growthOfCompoundInterest]
+  ComparisonResult: [comparison]
+  ExpressionList: [expressions]
+schema_reuse:
+  components_schemas: 0
+  note: >-
+    The identical six-field Result shape is repeated inline across five operations. Hoisting it into
+    components.schemas and $ref-ing it would improve spec quality without changing behavior — a real,
+    low-cost improvement to raise with the provider.

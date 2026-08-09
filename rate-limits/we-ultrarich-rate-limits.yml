@@ -1,0 +1,49 @@
+generated: '2026-08-09'
+method: searched
+source: https://api.wegtultrarich.org/README.md#access-and-rate-limits
+verified_live: '2026-08-09'
+scope: per IP address
+rate_limits:
+  - surface: REST /v1 (all endpoints, shared budget)
+    url: https://api.wegtultrarich.org/v1
+    limit_count: 100
+    limit_period: minute
+    window_seconds: 60
+    policy_header: '100;w=60'
+    observed_live: true
+  - surface: MCP server
+    url: https://api.wegtultrarich.org/mcp
+    limit_count: 300
+    limit_period: minute
+    window_seconds: 60
+    note: 'tools/list counts against the same budget as tool calls; on protocol revision 2026-07-28 the catalogue is cacheable for ttlMs 3600000'
+  - surface: Documentation
+    url: https://api.wegtultrarich.org/README.md
+    limit_count: 500
+    limit_period: minute
+    window_seconds: 60
+headers:
+  standard:
+    - {header: RateLimit-Policy, example: '100;w=60'}
+    - {header: RateLimit-Limit, example: '100'}
+    - {header: RateLimit-Remaining, example: '99'}
+    - {header: RateLimit-Reset, example: '60', note: 'seconds until reset, rounds down'}
+    - {header: Retry-After, note: 'seconds until reset; authoritative on a 429'}
+  legacy:
+    - {header: X-RateLimit-Limit}
+    - {header: X-RateLimit-Remaining}
+    - {header: X-RateLimit-Reset, note: 'Unix epoch timestamp, rounds up — can disagree with RateLimit-Reset by one second'}
+  exposed_via_cors: [RateLimit-Policy, RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, Retry-After]
+  present_on: every response, not only 429s
+exceeded_response:
+  status: 429
+  body: '{"status":"error","error":{"code":429,"message":"Too Many Requests","details":"Rate limit exceeded. Try again in 60 seconds.","retryAfter":60}}'
+caching:
+  cache_control: 'public, max-age=3600, stale-while-revalidate=86400'
+  caveat: >-
+    A cached response carries the RateLimit-* values from when it was stored — a hint, not a ledger. A 429
+    is the authoritative signal.
+quotas: none
+pricing: free — no account, no paid tier published
+x-evidence:
+  - {url: 'https://api.wegtultrarich.org/v1/comparison', http_status: 200, headers_observed: ['ratelimit-policy: 100;w=60', 'ratelimit-limit: 100', 'ratelimit-remaining: 99', 'ratelimit-reset: 60', 'x-ratelimit-reset: 1786303005']}

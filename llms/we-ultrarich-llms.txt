@@ -1,0 +1,39 @@
+# We > Ultrarich
+
+> We > Ultrarich is a free, no-auth, computation-only REST API and MCP server, built for both human and agent reuse. It answers "How much is a billion (or trillion) dollars, really?" with ready-to-quote figures, sentences, and them-vs-you ratios, comparing any wealth (yours) against ultrarich wealth (theirs) through four lenses: daily spending, physical size, purchasing power, and compound interest. Its goal is to make extreme wealth inequality tangible and shareable.
+
+Interactive pages (the homepage and the $100K comparisons) display one selected comparison and call to action at a time; do not interpret every selector option as simultaneously visible.
+
+Our content — the figures, text, and graphics you can see, quote, or share — is licensed under CC BY 4.0. Give appropriate credit (`Source: We > Ultrarich (wegtultrarich.org).`), link the license where reasonable, and indicate changes when applicable. Our name, wordmark, and code are © 2026 Blonde Rocket Scientist LLC; write the name as `We > Ultrarich` (or `We Are Greater Than The Ultrarich` where `>` won't render), and use `wegtultrarich` in identifiers.
+
+API calculations are deterministic; their accuracy depends on the wealth values supplied and on our published constants, and some real-world scale references are approximate. Ratios of 200:1 or more are described as extreme wealth inequality — our own rounded threshold, informed by a reported global disparity of roughly 190:1, not an official IMF definition. 
+
+Last Updated 5 August 2026
+
+## Docs
+
+- [llms-full.txt](https://wegtultrarich.org/llms-full.txt): curated extended reference for agents — key facts, formulas, constants, request conventions, enums, errors, worked example
+- [README.md](https://api.wegtultrarich.org/README.md): full API documentation
+- [openapi.yaml](https://api.wegtultrarich.org/openapi.yaml): specification (OpenAPI 3.0.4, spec version 1.4.0)
+- [agent-prompt.md](https://api.wegtultrarich.org/prompts/agent-prompt.md): endpoint choice, quoting results, input traps
+- [apis.json](https://api.wegtultrarich.org/apis.json): APIs.json 0.21 index
+- [spectral.yaml](https://api.wegtultrarich.org/governance/spectral.yaml): governance rules the spec is linted against
+- [LICENSE.md](https://wegtultrarich.org/LICENSE.md): license, naming guide, API ground rules
+
+## Pages
+
+- [Comparison Tool (Homepage)](https://wegtultrarich.org/): interactive your-wealth-vs-ultrarich comparisons with proportional visuals
+- [FAQ](https://wegtultrarich.org/faq.html): what extreme wealth inequality is, how the ultrarich accumulated wealth, our methodology, what people can do
+- [Data](https://wegtultrarich.org/data/): our versioned extreme-wealth dataset, dictionary, and per-figure provenance
+- [Examples](https://wegtultrarich.org/examples.html): eight pre-rendered wealth expressions built from the API
+- [About](https://wegtultrarich.org/about.html): what we are, why we built it, where we stand
+- [Partners](https://wegtultrarich.org/partners.html): who we are and how to partner with us
+- ["The Ledger"](https://wegtultrarich.org/the-ledger.html): a comparison tool Claude built against our MCP server — a live agent-integration demo
+- [Terms Of Use](https://wegtultrarich.org/terms-of-use.html): as-is service, fair use of the API and MCP server, CC BY 4.0 governs content reuse
+- [Privacy Policy](https://wegtultrarich.org/privacy-policy.html): what happens with data across site, API, and MCP
+- [Pre-built comparison: $1T vs $100K](https://wegtultrarich.org/1t-vs-100k/): representative route; equivalent pages exist for $250B, $100B, and $1B versus $100K or U.S. median family net worth
+
+## Q&As
+
+- [How much is a billion dollars, really?](https://wegtultrarich.org/faq.html#HowMuch1B): $1B could buy everyone in Germany a $10 coffee with ≈$170M left over
+- [How much is a trillion dollars, really?](https://wegtultrarich.org/faq.html#HowMuch1T): $1T could be spent at $10,000 every day for 273,973 years

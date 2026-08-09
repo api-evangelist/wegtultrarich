@@ -1,0 +1,54 @@
+generated: '2026-08-09'
+method: searched
+source: https://wegtultrarich.org/CHANGELOG.md
+versioning:
+  scheme: uri-path
+  current_path_version: v1
+  base_url: https://api.wegtultrarich.org/v1
+  release_scheme: semver
+  current_release: 1.4.0
+  released: '2026-08-05'
+  spec_version: 1.4.0
+  changelog_format: Keep a Changelog 1.1.0
+  docs: https://wegtultrarich.org/CHANGELOG.md
+  detail: >-
+    The REST path is pinned at /v1 and has not been rev'd. Product releases follow Semantic Versioning; the
+    OpenAPI info.version tracks the release (1.4.0). MCP tool and parameter DESCRIPTIONS are explicitly
+    treated as part of the interface, so wording changes ship as MINOR releases because they change how
+    models select and call tools.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  detail: >-
+    No written deprecation or sunset policy is published, and no RFC 8594 Sunset/Deprecation header support
+    is documented. The changelog does carry a Deprecated-style commitment in practice — MCP protocol
+    revision 2025-11-25 "remains fully supported" alongside 2026-07-28 from the same endpoint, and the
+    1.4.0 entry states "no client action required" — but that is a release note, not a policy. THIS IS A
+    REAL GAP: a published deprecation/sunset policy is the cheapest remaining lifecycle artifact for this
+    provider.
+protocol_support:
+  mcp_revisions_served: ['2025-03-26', '2025-06-18', '2025-11-25', '2026-07-28']
+  detail: >-
+    All revisions answer from the same endpoint; clients on 2026-07-28 select a revision per request, older
+    clients negotiate at initialize. Tool names, input fields and result content are identical across
+    revisions.
+sla:
+  url: null
+  uptime_target: null
+  detail: 'Terms Of Use publish an as-is service with no uptime commitment.'
+  terms: https://wegtultrarich.org/terms-of-use.html
+status_page:
+  url: null
+  probed:
+    - {url: 'https://status.wegtultrarich.org/', status: 000, note: DNS does not resolve}
+    - {url: 'https://wegtultrarich.org/status', status: 404}
+  detail: No status page is published. THIS IS A REAL GAP.
+deprecated_operations: []
+support:
+  contact: info@wegtultrarich.org
+  faq: https://wegtultrarich.org/faq.html
+  source_repository: >-
+    The documentation-only GitHub organization, repository and issue tracker are stated as temporarily
+    unavailable pending GitHub account restoration — github.com/wegtultrarich and
+    github.com/wegtultrarich/mcp-server both returned 404 on 2026-08-09.

@@ -1,0 +1,309 @@
+{
+  "result": {
+    "tools": [
+      {
+        "name": "duration_of_daily_spend",
+        "title": "Duration Of Daily Spend",
+        "description": "How long a wealth would last if a fixed amount were spent every day. Answers \"how long would it take to spend a billion dollars?\"",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "wealth": {
+              "type": "string",
+              "description": "Amount of money. Accepts plain numbers (\"1000000000\"), formatted numbers (\"1,000,000,000\"), or shorthand (\"1B\", \"750B\", \"1T\"). Currency defaults to USD."
+            },
+            "spend": {
+              "type": "string",
+              "description": "Amount spent per day (e.g. \"1000\" or \"1K\")."
+            }
+          },
+          "required": [
+            "wealth",
+            "spend"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "height_of_money_stack",
+        "title": "Height Of Money Stack",
+        "description": "How high a wealth would stack as physical currency, across 11 currencies. No currency conversion is performed \u2014 typeOfMoney's currency overrides any symbol on wealth.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "wealth": {
+              "type": "string",
+              "description": "Amount of money. Accepts plain numbers (\"1000000000\"), formatted numbers (\"1,000,000,000\"), or shorthand (\"1B\", \"750B\", \"1T\"). Currency defaults to USD."
+            },
+            "typeOfMoney": {
+              "type": "string",
+              "enum": [
+                "usd_1_coin",
+                "usd_100_bill",
+                "cad_1_coin",
+                "cad_100_bill",
+                "eur_1_coin",
+                "eur_100_bill",
+                "gbp_1_coin",
+                "gbp_100_bill",
+                "cny_1_coin",
+                "cny_100_bill",
+                "inr_1_coin",
+                "inr_100_bill",
+                "krw_1_coin",
+                "krw_1000_bill",
+                "rub_1_coin",
+                "rub_100_bill",
+                "try_1_coin",
+                "try_100_bill",
+                "chf_1_coin",
+                "chf_100_bill",
+                "brl_1_coin",
+                "brl_100_bill"
+              ],
+              "description": "Money slug. Denomination to stack, across 11 currencies. Coins stack far higher than bills \u2014 pick coins for maximum contrast. The slug's currency overrides any currency given for wealth (no conversion is done). One of: usd_1_coin (Dollar Coins (USD)); usd_100_bill (Hundred-Dollar Bills (USD)); cad_1_coin (Loonies (CAD)); cad_100_bill (Hundred-Dollar Bills (CAD)); eur_1_coin (Euro Coins); eur_100_bill (Hundred-Euro Bills); gbp_1_coin (Pound Coins); gbp_100_bill (Hundred-Pound Bills); cny_1_coin (Yuan Coins); cny_100_bill (Hundred-Yuan Bills); inr_1_coin (Rupee Coins); inr_100_bill (Hundred-Rupee Bills); krw_1_coin (Won Coins); krw_1000_bill (Thousand-Won Bills); rub_1_coin (Ruble Coins); rub_100_bill (Hundred-Ruble Bills); try_1_coin (Lira Coins); try_100_bill (Hundred-Lira Bills); chf_1_coin (Franc Coins); chf_100_bill (Hundred-Franc Bills); brl_1_coin (Real Coins); brl_100_bill (Hundred-Real Bills)"
+            }
+          },
+          "required": [
+            "wealth",
+            "typeOfMoney"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "number_of_items",
+        "title": "Number Of Items Paid For",
+        "description": "How many of one item a wealth could buy or pay off, from coffees to superyachts. Prices are approximate U.S. benchmarks in USD.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "wealth": {
+              "type": "string",
+              "description": "Amount of money. Accepts plain numbers (\"1000000000\"), formatted numbers (\"1,000,000,000\"), or shorthand (\"1B\", \"750B\", \"1T\"). Currency defaults to USD."
+            },
+            "typeOfItem": {
+              "type": "string",
+              "enum": [
+                "fancy_coffee",
+                "quick_meal",
+                "dinner_with_drinks",
+                "iphone",
+                "month_of_childcare",
+                "rent_or_mortgage_payment",
+                "year_of_low_minimum_wage_salary",
+                "year_of_high_minimum_wage_salary",
+                "student_loan_debt",
+                "car",
+                "year_of_salary_65k",
+                "year_of_salary_100k",
+                "luxury_car",
+                "house",
+                "yacht",
+                "supercar",
+                "island",
+                "mansion",
+                "estate_with_a_mega_mansion",
+                "luxury_island",
+                "superyacht"
+              ],
+              "description": "Item slug. Thing to buy or pay off. Choose what fits the question: a year of minimum-wage salary and a superyacht make very different points. One of: fancy_coffee ($10 Fancy Coffee); quick_meal ($15 Quick Meal); dinner_with_drinks ($175 Dinner With Drinks); iphone ($1,400 iPhone); month_of_childcare ($1,750 Month Of Childcare); rent_or_mortgage_payment ($3,000 Rent Or Mortgage Payment); year_of_low_minimum_wage_salary (Year Of Low Minimum Wage Salary ($15,080)); year_of_high_minimum_wage_salary (Year Of High Minimum Wage Salary ($32,240)); student_loan_debt ($40K Student Loan Debt); car ($50K Car); year_of_salary_65k (Year Of $65,000 Salary); year_of_salary_100k (Year Of $100,000 Salary); luxury_car ($275K Luxury Car); house ($500K House); yacht ($800K Yacht); supercar ($4M Supercar); island ($30M Island); mansion ($75M Mansion); estate_with_a_mega_mansion ($200M Estate With A Mega-Mansion); luxury_island ($300M Luxury Island); superyacht ($600M Superyacht)"
+            }
+          },
+          "required": [
+            "wealth",
+            "typeOfItem"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "growth_of_compound_interest",
+        "title": "Growth Of Compound Interest",
+        "description": "How much a wealth grows from compound interest alone, untouched, over a period. Answers \"how much does a fortune earn while its owner does nothing?\"",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "wealth": {
+              "type": "string",
+              "description": "Amount of money. Accepts plain numbers (\"1000000000\"), formatted numbers (\"1,000,000,000\"), or shorthand (\"1B\", \"750B\", \"1T\"). Currency defaults to USD."
+            },
+            "rate": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "exclusiveMaximum": 1,
+              "description": "Interest rate as a decimal between 0 and 1, exclusive. 0.01 = 1%, 0.05 = 5%. Never clamped: 1 returns \"Rate Invalid (1)\", 2 returns \"Rate Outside Range\"."
+            },
+            "frequency": {
+              "type": "string",
+              "enum": [
+                "1",
+                "2",
+                "4",
+                "12",
+                "365"
+              ],
+              "description": "Compounding Frequency: 1 annually, 2 semiannually, 4 quarterly, 12 monthly, 365 daily."
+            },
+            "period": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "exclusiveMaximum": 100,
+              "description": "Duration in years, between 0 and 100, exclusive."
+            }
+          },
+          "required": [
+            "wealth",
+            "rate",
+            "frequency",
+            "period"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "comparison",
+        "title": "Full Comparison Of Two Wealths",
+        "description": "Complete \"them vs. you\": runs one expression for both wealths and returns both results plus the ratio between them. Ideal for questions like \"how does my net worth compare to a billionaire's?\" A ratio.value below 1 means the user's wealth is the larger.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "expression": {
+              "type": "string",
+              "enum": [
+                "durationOfDailySpend",
+                "heightOfMoneyStack",
+                "numberOfItems",
+                "growthOfCompoundInterest"
+              ],
+              "description": "Which expression to compute for both wealths."
+            },
+            "wealthYours": {
+              "type": "string",
+              "description": "The user's (smaller) wealth."
+            },
+            "wealthTheirs": {
+              "type": "string",
+              "description": "The ultrarich (larger) wealth."
+            },
+            "spend": {
+              "description": "durationOfDailySpend only: daily spend amount.",
+              "type": "string"
+            },
+            "typeOfMoney": {
+              "description": "heightOfMoneyStack only. Money slug. Denomination to stack, across 11 currencies. Coins stack far higher than bills \u2014 pick coins for maximum contrast. The slug's currency overrides any currency given for wealth (no conversion is done). One of: usd_1_coin (Dollar Coins (USD)); usd_100_bill (Hundred-Dollar Bills (USD)); cad_1_coin (Loonies (CAD)); cad_100_bill (Hundred-Dollar Bills (CAD)); eur_1_coin (Euro Coins); eur_100_bill (Hundred-Euro Bills); gbp_1_coin (Pound Coins); gbp_100_bill (Hundred-Pound Bills); cny_1_coin (Yuan Coins); cny_100_bill (Hundred-Yuan Bills); inr_1_coin (Rupee Coins); inr_100_bill (Hundred-Rupee Bills); krw_1_coin (Won Coins); krw_1000_bill (Thousand-Won Bills); rub_1_coin (Ruble Coins); rub_100_bill (Hundred-Ruble Bills); try_1_coin (Lira Coins); try_100_bill (Hundred-Lira Bills); chf_1_coin (Franc Coins); chf_100_bill (Hundred-Franc Bills); brl_1_coin (Real Coins); brl_100_bill (Hundred-Real Bills)",
+              "type": "string",
+              "enum": [
+                "usd_1_coin",
+                "usd_100_bill",
+                "cad_1_coin",
+                "cad_100_bill",
+                "eur_1_coin",
+                "eur_100_bill",
+                "gbp_1_coin",
+                "gbp_100_bill",
+                "cny_1_coin",
+                "cny_100_bill",
+                "inr_1_coin",
+                "inr_100_bill",
+                "krw_1_coin",
+                "krw_1000_bill",
+                "rub_1_coin",
+                "rub_100_bill",
+                "try_1_coin",
+                "try_100_bill",
+                "chf_1_coin",
+                "chf_100_bill",
+                "brl_1_coin",
+                "brl_100_bill"
+              ]
+            },
+            "typeOfItem": {
+              "description": "numberOfItems only. Item slug. Thing to buy or pay off. Choose what fits the question: a year of minimum-wage salary and a superyacht make very different points. One of: fancy_coffee ($10 Fancy Coffee); quick_meal ($15 Quick Meal); dinner_with_drinks ($175 Dinner With Drinks); iphone ($1,400 iPhone); month_of_childcare ($1,750 Month Of Childcare); rent_or_mortgage_payment ($3,000 Rent Or Mortgage Payment); year_of_low_minimum_wage_salary (Year Of Low Minimum Wage Salary ($15,080)); year_of_high_minimum_wage_salary (Year Of High Minimum Wage Salary ($32,240)); student_loan_debt ($40K Student Loan Debt); car ($50K Car); year_of_salary_65k (Year Of $65,000 Salary); year_of_salary_100k (Year Of $100,000 Salary); luxury_car ($275K Luxury Car); house ($500K House); yacht ($800K Yacht); supercar ($4M Supercar); island ($30M Island); mansion ($75M Mansion); estate_with_a_mega_mansion ($200M Estate With A Mega-Mansion); luxury_island ($300M Luxury Island); superyacht ($600M Superyacht)",
+              "type": "string",
+              "enum": [
+                "fancy_coffee",
+                "quick_meal",
+                "dinner_with_drinks",
+                "iphone",
+                "month_of_childcare",
+                "rent_or_mortgage_payment",
+                "year_of_low_minimum_wage_salary",
+                "year_of_high_minimum_wage_salary",
+                "student_loan_debt",
+                "car",
+                "year_of_salary_65k",
+                "year_of_salary_100k",
+                "luxury_car",
+                "house",
+                "yacht",
+                "supercar",
+                "island",
+                "mansion",
+                "estate_with_a_mega_mansion",
+                "luxury_island",
+                "superyacht"
+              ]
+            },
+            "rate": {
+              "description": "growthOfCompoundInterest only.",
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "exclusiveMaximum": 1
+            },
+            "frequency": {
+              "description": "growthOfCompoundInterest only.",
+              "type": "string",
+              "enum": [
+                "1",
+                "2",
+                "4",
+                "12",
+                "365"
+              ]
+            },
+            "period": {
+              "description": "growthOfCompoundInterest only.",
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "exclusiveMaximum": 100
+            }
+          },
+          "required": [
+            "expression",
+            "wealthYours",
+            "wealthTheirs"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      }
+    ]
+  },
+  "jsonrpc": "2.0",
+  "id": 1
+}

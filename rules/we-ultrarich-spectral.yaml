@@ -1,0 +1,106 @@
+extends: ["spectral:oas"]
+
+rules:
+  # Workaround: this core rule crashes Spectral 6.16.2 (nimma 0.2.3) on any
+  # `example: null` in the document. Our spec uses `example: null` to show
+  # nullable `type` and `scale` fields. Re-enable if the upstream bug is fixed.
+  duplicated-entry-in-enum: off
+
+  info-contact: error
+  info-license: error
+  info-description: error
+  operation-description: error
+  operation-operationId: error
+  operation-tags: error
+
+  wegtultrarich-read-only:
+    description: This API is read-only; only GET operations are permitted.
+    message: "Non-GET operation declared ({{property}}). This API is read-only."
+    severity: error
+    given: "$.paths.*[?(@property === 'post' || @property === 'put' || @property === 'patch' || @property === 'delete' || @property === 'head' || @property === 'options' || @property === 'trace')]"
+    then:
+      function: undefined
+
+  # `security: []` at the root is the OpenAPI way of saying "no auth required",
+  # so the field itself must be allowed to exist — only a non-empty requirement
+  # is a violation. Checking `field: security` with `undefined` would flag our
+  # own spec.
+  wegtultrarich-no-auth-root:
+    description: The API must remain free and unauthenticated.
+    message: "A root security requirement was declared; this API is public and no-auth."
+    severity: error
+    given: "$.security[*]"
+    then:
+      function: undefined
+
+  wegtultrarich-no-auth-operation:
+    description: No operation may require authentication.
+    message: "An operation declared a security requirement; this API is public and no-auth."
+    severity: error
+    given: "$.paths.*.*.security[*]"
+    then:
+      function: undefined
+
+  wegtultrarich-no-auth-schemes:
+    description: No security schemes may be defined.
+    message: "A security scheme was declared; this API is public and no-auth."
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      function: undefined
+
+  wegtultrarich-license-cc-by:
+    description: The published license must remain CC BY 4.0.
+    message: "License is not CC BY 4.0."
+    severity: error
+    given: "$.info.license"
+    then:
+      field: name
+      function: pattern
+      functionOptions:
+        match: "CC BY 4.0"
+
+  wegtultrarich-rate-limit-documented:
+    description: Every operation must document its 429 rate-limit response.
+    message: "Operation does not document a 429 response."
+    severity: error
+    given: "$.paths.*.get.responses"
+    then:
+      field: "429"
+      function: truthy
+
+  wegtultrarich-base-url:
+    description: The production server must remain the canonical versioned base URL.
+    message: "Server URL is not https://api.wegtultrarich.org/v1."
+    severity: error
+    given: "$.servers[0]"
+    then:
+      field: url
+      function: pattern
+      functionOptions:
+        match: "^https://api\\.wegtultrarich\\.org/v1$"
+
+  wegtultrarich-attribution-documented:
+    description: The published attribution line must remain in the spec description.
+    message: "info.description does not carry the CC BY 4.0 attribution line."
+    severity: warn
+    given: "$.info"
+    then:
+      field: description
+      function: pattern
+      functionOptions:
+        match: "Source: We > Ultrarich \\(wegtultrarich\\.org\\)"
+
+  wegtultrarich-response-examples:
+    description: Every 200 response should carry a sample payload so results are quotable.
+    message: "200 response has no example or examples field."
+    severity: warn
+    given: "$.paths.*.get.responses['200'].content['application/json']"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          anyOf:
+            - required: [example]
+            - required: [examples]

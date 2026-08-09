@@ -1,0 +1,75 @@
+generated: '2026-08-09'
+method: searched
+hosts:
+  - host: https://api.wegtultrarich.org
+    documents:
+      - path: /.well-known/security.txt          # RFC 9116
+        status: 200
+        file: we-ultrarich-security.txt
+      - path: /.well-known/apis.json             # APIs.json 0.21 discovery index
+        status: 200
+        file: we-ultrarich-apis.json
+      - path: /.well-known/mcp.json              # MCP server card
+        status: 200
+        file: we-ultrarich-mcp.json
+      - path: /.well-known/mcp-server-card       # alias of /.well-known/mcp.json (identical body)
+        status: 200
+        file: we-ultrarich-mcp.json
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://wegtultrarich.org
+    note: >-
+      The marketing/tool host serves no /.well-known documents; every probed path returned a real 404
+      (HTML error page, not an SPA 200 catch-all). All discovery lives on the API host.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /.well-known/mcp.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+non_well_known_discovery:
+  - url: https://api.wegtultrarich.org/apis.json
+    status: 200
+    note: same APIs.json index also served off the well-known path
+  - url: https://api.wegtultrarich.org/openapi.yaml
+    status: 200
+  - url: https://wegtultrarich.org/llms.txt
+    status: 200
+  - url: https://wegtultrarich.org/llms-full.txt
+    status: 200
+  - url: https://api.wegtultrarich.org/prompts/agent-prompt.md
+    status: 200
+  - url: https://api.wegtultrarich.org/governance/spectral.yaml
+    status: 200
+  - url: https://wegtultrarich.org/robots.txt
+    status: 200
+    note: 'Allow all; sitemap declared at https://wegtultrarich.org/sitemap.xml'
+x-evidence:
+  fetched: '2026-08-09'

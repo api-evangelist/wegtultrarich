@@ -1,0 +1,21 @@
+generated: '2026-08-09'
+method: searched
+source: registry searches + https://api.wegtultrarich.org/README.md
+packages: []
+result: none found
+detail: >-
+  We > Ultrarich publishes no first-party client libraries. This is consistent with the surface: a no-auth
+  GET API returning JSON, plus a hosted MCP server that every MCP-capable client consumes directly from its
+  URL. The README's "Connecting" section documents client setup (Claude Code, Codex CLI, Gemini CLI) rather
+  than an SDK to install. The documentation-only GitHub organization is stated as temporarily unavailable
+  pending account restoration, so no source repository could be inspected.
+registries_checked:
+  - {registry: npm, query: wegtultrarich, results: 0, url: 'https://registry.npmjs.org/-/v1/search?text=wegtultrarich'}
+  - {registry: pypi, query: wegtultrarich, status: 404, url: 'https://pypi.org/pypi/wegtultrarich/json'}
+  - {registry: pypi, query: we-ultrarich, status: 404, url: 'https://pypi.org/pypi/we-ultrarich/json'}
+  - {registry: github, query: 'github.com/wegtultrarich', status: 404}
+  - {registry: github, query: 'github.com/wegtultrarich/mcp-server', status: 404, note: 'referenced by SECURITY.md; account restoration pending'}
+note_on_soft_404: >-
+  pypi.org/project/<name>/ answers HTTP 200 for names that do not exist, so the authoritative check is the
+  JSON API (pypi.org/pypi/<name>/json), which returned 404 for both candidate names. A 200 on the HTML page
+  is not evidence of a package.

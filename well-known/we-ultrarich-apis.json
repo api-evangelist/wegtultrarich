@@ -1,0 +1,217 @@
+{
+  "aid": "wegtultrarich.org:wegtultrarich",
+  "name": "We > Ultrarich",
+  "type": "Collection",
+  "description": "Turns billionaire and trillionaire fortunes into tangible, personalized comparisons. Compares any wealth against ultrarich wealth through four lenses: duration of daily spend, height of stacked money, number of items paid for, and growth of compound interest. Deterministic arithmetic with published formulas and primary sources. Free, no-auth, read-only, results are CC BY 4.0.",
+  "image": "https://wegtultrarich.org/apple-touch-icon.png",
+  "url": "https://api.wegtultrarich.org/apis.json",
+  "created": "2026-06-19",
+  "modified": "2026-07-26",
+  "specificationVersion": "0.21",
+  "tags": [
+    "wealth inequality",
+    "economic inequality",
+    "distribution of wealth",
+    "ultra-high-net-worth individual",
+    "billionaire",
+    "trillionaire",
+    "finance",
+    "economics",
+    "education",
+    "journalism",
+    "open data",
+    "comparison"
+  ],
+  "maintainers": [
+    {
+      "FN": "Blonde Rocket Scientist LLC",
+      "email": "info@wegtultrarich.org",
+      "url": "https://wegtultrarich.org"
+    }
+  ],
+  "common": [
+    {
+      "type": "Website",
+      "url": "https://wegtultrarich.org/"
+    },
+    {
+      "type": "License",
+      "url": "https://wegtultrarich.org/LICENSE.md"
+    },
+    {
+      "type": "TermsOfService",
+      "url": "https://wegtultrarich.org/terms-of-use.html"
+    },
+    {
+      "type": "PrivacyPolicy",
+      "url": "https://wegtultrarich.org/privacy-policy.html"
+    },
+    {
+      "type": "Security",
+      "url": "https://wegtultrarich.org/SECURITY.md"
+    },
+    {
+      "type": "ChangeLog",
+      "url": "https://wegtultrarich.org/CHANGELOG.md"
+    },
+    {
+      "type": "RateLimits",
+      "url": "https://api.wegtultrarich.org/README.md"
+    },
+    {
+      "type": "LlmsText",
+      "name": "llms.txt",
+      "url": "https://wegtultrarich.org/llms.txt"
+    },
+    {
+      "type": "LlmsText",
+      "name": "llms-full.txt",
+      "url": "https://wegtultrarich.org/llms-full.txt"
+    },
+    {
+      "type": "FAQ",
+      "url": "https://wegtultrarich.org/faq.html"
+    },
+    {
+      "type": "About",
+      "url": "https://wegtultrarich.org/about.html"
+    },
+    {
+      "type": "Examples",
+      "url": "https://wegtultrarich.org/examples.html"
+    },
+    {
+      "type": "Contact",
+      "url": "https://wegtultrarich.org/partners.html"
+    }
+  ],
+  "prompts": [
+    {
+      "type": "AgentPrompt",
+      "name": "We > Ultrarich Agent Prompt",
+      "description": "Task-oriented guidance for AI agents calling the API or MCP server.",
+      "mediaType": "text/markdown",
+      "url": "https://api.wegtultrarich.org/prompts/agent-prompt.md"
+    }
+  ],
+  "rules": [
+    {
+      "type": "SpectralRules",
+      "name": "We > Ultrarich API Governance",
+      "description": "Enforces read-only, no-auth, CC BY 4.0, and documented rate limits.",
+      "mediaType": "application/yaml",
+      "url": "https://api.wegtultrarich.org/governance/spectral.yaml"
+    }
+  ],
+  "apis": [
+    {
+      "aid": "wegtultrarich.org:rest-api",
+      "name": "We > Ultrarich REST API",
+      "description": "Computation-only REST API returning ready-to-quote figures, sentences, and them-vs-you ratios across four comparison lenses. No authentication; no account or personal information is requested; 100 requests/minute per IP; technical request data is processed transiently for rate limiting, security, and operations; and uses only basic privacy-first analytics.",
+      "image": "https://wegtultrarich.org/apple-touch-icon.png",
+      "humanURL": "https://api.wegtultrarich.org/README.md",
+      "baseURL": "https://api.wegtultrarich.org/v1",
+      "version": "1.4.0",
+      "tags": [
+        "wealth inequality",
+        "comparison",
+        "finance",
+        "no-auth"
+      ],
+      "properties": [
+        {
+          "type": "Documentation",
+          "url": "https://api.wegtultrarich.org/README.md"
+        },
+        {
+          "type": "OpenAPI",
+          "url": "https://api.wegtultrarich.org/openapi.yaml"
+        },
+        {
+          "type": "APIReference",
+          "name": "Interactive Reference",
+          "url": "https://api.wegtultrarich.org/"
+        },
+        {
+          "type": "PostmanCollection",
+          "url": "https://www.postman.com/wegtultrarich/we-ultrarich-extreme-wealth-api-mcp-server/collection/kcacxo9/start-here-four-ways-to-understand-extreme-wealth"
+        },
+        {
+          "type": "GettingStarted",
+          "url": "https://api.wegtultrarich.org/README.md"
+        },
+        {
+          "type": "LlmsText",
+          "url": "https://wegtultrarich.org/llms-full.txt"
+        },
+        {
+          "type": "ChangeLog",
+          "url": "https://wegtultrarich.org/CHANGELOG.md"
+        },
+        {
+          "type": "RateLimits",
+          "url": "https://api.wegtultrarich.org/README.md"
+        },
+        { "type": "Security",       "url": "https://wegtultrarich.org/SECURITY.md" },
+        { "type": "License",        "url": "https://wegtultrarich.org/LICENSE.md" },
+        { "type": "TermsOfService", "url": "https://wegtultrarich.org/terms-of-use.html" },
+        { "type": "PrivacyPolicy",  "url": "https://wegtultrarich.org/privacy-policy.html" },
+        { "type": "SpectralRules",  "url": "https://api.wegtultrarich.org/governance/spectral.yaml" }
+      ],
+      "contact": [
+        {
+          "FN": "Blonde Rocket Scientist LLC",
+          "email": "info@wegtultrarich.org"
+        }
+      ]
+    },
+    {
+      "aid": "wegtultrarich.org:mcp-server",
+      "name": "We > Ultrarich MCP Server",
+      "description": "Model Context Protocol server exposing five tools over the same computation engine, with CC BY 4.0 attribution embedded in every result. No authentication, 300 requests/minute per IP.",
+      "image": "https://wegtultrarich.org/apple-touch-icon.png",
+      "humanURL": "https://api.wegtultrarich.org/README.md",
+      "baseURL": "https://api.wegtultrarich.org/mcp",
+      "version": "1.4.0",
+      "tags": [
+        "mcp",
+        "model context protocol",
+        "agents",
+        "wealth inequality"
+      ],
+      "properties": [
+        {
+          "type": "Documentation",
+          "url": "https://api.wegtultrarich.org/README.md"
+        },
+        {
+          "type": "PostmanCollection",
+          "url": "https://www.postman.com/wegtultrarich/we-ultrarich-extreme-wealth-api-mcp/collection/6a68bfdcf1d9df57e26c3545"
+        },
+        {
+          "type": "ModelContextProtocol",
+          "name": "MCP Server Card",
+          "mediaType": "application/json",
+          "url": "https://api.wegtultrarich.org/.well-known/mcp-server-card"
+        },
+        {
+          "type": "RateLimits",
+          "url": "https://api.wegtultrarich.org/README.md"
+        }
+      ],
+      "prompts": [
+        {
+          "type": "AgentPrompt",
+          "mediaType": "text/markdown",
+          "url": "https://api.wegtultrarich.org/prompts/agent-prompt.md"
+        }
+      ],
+      "contact": [
+        {
+          "FN": "Blonde Rocket Scientist LLC",
+          "email": "info@wegtultrarich.org"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+generated: '2026-08-09'
+method: derived
+source: openapi/we-ultrarich-openapi-original.yml
+description: >-
+  The controlled vocabularies the We > Ultrarich API accepts as enumerated query-parameter values, lifted
+  verbatim from the OpenAPI 3.0.4 document. Identical enums are carried by the MCP tool inputSchemas.
+vocabularies:
+  - name: expression
+    description: The wealth expression to compute. Used by /comparison and named by each /v1 route.
+    used_by: [comparison]
+    terms:
+      - {term: durationOfDailySpend, label: Duration Of Daily Spend, also_requires: [spend]}
+      - {term: heightOfMoneyStack, label: Height Of Stacked Money, also_requires: [typeOfMoney]}
+      - {term: numberOfItems, label: Number Of Items Paid For, also_requires: [typeOfItem]}
+      - {term: growthOfCompoundInterest, label: Growth Of Compound Interest, also_requires: [rate, frequency, period]}
+  - name: typeOfMoney
+    description: >-
+      Denomination to stack, across 11 currencies. Coins stack far higher than bills. The slug's currency
+      overrides any currency given for wealth — no conversion is performed.
+    used_by: [heightOfMoneyStack, comparison]
+    terms:
+      - {term: usd_1_coin, label: Dollar Coins (USD)}
+      - {term: usd_100_bill, label: Hundred-Dollar Bills (USD)}
+      - {term: cad_1_coin, label: Loonies (CAD)}
+      - {term: cad_100_bill, label: Hundred-Dollar Bills (CAD)}
+      - {term: eur_1_coin, label: Euro Coins}
+      - {term: eur_100_bill, label: Hundred-Euro Bills}
+      - {term: gbp_1_coin, label: Pound Coins}
+      - {term: gbp_100_bill, label: Hundred-Pound Bills}
+      - {term: cny_1_coin, label: Yuan Coins}
+      - {term: cny_100_bill, label: Hundred-Yuan Bills}
+      - {term: inr_1_coin, label: Rupee Coins}
+      - {term: inr_100_bill, label: Hundred-Rupee Bills}
+      - {term: krw_1_coin, label: Won Coins}
+      - {term: krw_1000_bill, label: Thousand-Won Bills}
+      - {term: rub_1_coin, label: Ruble Coins}
+      - {term: rub_100_bill, label: Hundred-Ruble Bills}
+      - {term: try_1_coin, label: Lira Coins}
+      - {term: try_100_bill, label: Hundred-Lira Bills}
+      - {term: chf_1_coin, label: Franc Coins}
+      - {term: chf_100_bill, label: Hundred-Franc Bills}
+      - {term: brl_1_coin, label: Real Coins}
+      - {term: brl_100_bill, label: Hundred-Real Bills}
+  - name: typeOfItem
+    description: >-
+      Thing to buy or pay off. Prices are approximate U.S. benchmarks denominated in USD; the labels below
+      carry the benchmark price the provider publishes.
+    used_by: [numberOfItems, comparison]
+    terms:
+      - {term: fancy_coffee, label: $10 Fancy Coffee}
+      - {term: quick_meal, label: $15 Quick Meal}
+      - {term: dinner_with_drinks, label: $175 Dinner With Drinks}
+      - {term: iphone, label: $1,400 iPhone}
+      - {term: month_of_childcare, label: $1,750 Month Of Childcare}
+      - {term: rent_or_mortgage_payment, label: $3,000 Rent Or Mortgage Payment}
+      - {term: year_of_low_minimum_wage_salary, label: Year Of Low Minimum Wage Salary ($15,080)}
+      - {term: year_of_high_minimum_wage_salary, label: Year Of High Minimum Wage Salary ($32,240)}
+      - {term: student_loan_debt, label: $40K Student Loan Debt}
+      - {term: car, label: $50K Car}
+      - {term: year_of_salary_65k, label: Year Of $65,000 Salary}
+      - {term: year_of_salary_100k, label: Year Of $100,000 Salary}
+      - {term: luxury_car, label: $275K Luxury Car}
+      - {term: house, label: $500K House}
+      - {term: yacht, label: $800K Yacht}
+      - {term: supercar, label: $4M Supercar}
+      - {term: island, label: $30M Island}
+      - {term: mansion, label: $75M Mansion}
+      - {term: estate_with_a_mega_mansion, label: $200M Estate With A Mega-Mansion}
+      - {term: luxury_island, label: $300M Luxury Island}
+      - {term: superyacht, label: $600M Superyacht}
+  - name: frequency
+    description: Compounding frequency, expressed as periods per year.
+    used_by: [growthOfCompoundInterest, comparison]
+    terms:
+      - {term: '1', label: annually}
+      - {term: '2', label: semiannually}
+      - {term: '4', label: quarterly}
+      - {term: '12', label: monthly}
+      - {term: '365', label: daily}
+  - name: result_fields
+    description: The six fields carried by every wealth-expression result object.
+    terms:
+      - {term: value, label: 'raw numeric result — for arithmetic, not display'}
+      - {term: unit, label: 'unit of value (nullable)'}
+      - {term: type, label: 'result subtype — kind of stacked money or item (nullable)'}
+      - {term: phrase, label: 'short title-cased statement, for labels'}
+      - {term: sentence, label: 'complete sentence-cased statement, for quoting'}
+      - {term: scale, label: 'sentence-cased real-world context (nullable by design)'}
+external_dataset:
+  url: https://wegtultrarich.org/data/
+  note: >-
+    Headline wealth figures (billionaire counts, total wealth, UHNWI populations) come from the provider's
+    separately versioned dataset with a data dictionary and per-figure provenance, cited by metric_id. The
+    API itself computes only from values the caller supplies.

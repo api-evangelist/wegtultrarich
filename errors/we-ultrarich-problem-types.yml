@@ -1,0 +1,118 @@
+generated: '2026-08-09'
+method: searched
+source: https://api.wegtultrarich.org/README.md#errors
+also_derived_from: openapi/we-ultrarich-openapi-original.yml
+format: vendor-envelope
+format_note: >-
+  Not RFC 9457. Errors are returned as application/json with a vendor envelope
+  {"status":"error","error":{"code":<int>,"message":"<prose>"}} — there is no `type` URI, `title`,
+  `detail` or `instance`, and the media type is application/json rather than application/problem+json.
+envelope:
+  shape: '{"status":"error","error":{"code":<int>,"message":"<prose>"}}'
+  fields:
+    - {field: status, type: string, value: error}
+    - {field: error.code, type: integer, note: mirrors the HTTP status code}
+    - {field: error.message, type: string, note: 'names the offending parameter in prose, then the category'}
+    - {field: error.details, type: string, note: '429 only — human-readable retry guidance'}
+    - {field: error.retryAfter, type: integer, note: '429 only — seconds until the window resets; agrees with the Retry-After header'}
+status_codes:
+  - {status: 200, meaning: Success}
+  - {status: 400, meaning: Request error — read the message}
+  - {status: 429, meaning: Rate limit exceeded — retry in the next window}
+parameter_name_mapping:
+  note: 'Parameter names appear in messages in prose title case, not camelCase.'
+  map:
+    Wealth: wealth
+    Your Wealth: wealthYours
+    Their Wealth: wealthTheirs
+    Spend: spend
+    Type Of Money: typeOfMoney
+    Type Of Item: typeOfItem
+    Rate: rate
+    Frequency: frequency
+    Period: period
+    Expression: expression
+categories:
+  money_parameters:
+    applies_to: [wealth, wealthYours, wealthTheirs, spend]
+    values:
+      - {category: Missing, cause: 'absent or empty value, or a bare currency symbol', example_message: Wealth Missing}
+      - {category: Malformed, cause: 'a magnitude letter with no digits (e.g. wealth=B)', example_message: Wealth Malformed}
+      - {category: Invalid, cause: 'non-money input', example_message: Spend Invalid}
+      - {category: Not-a-Number, cause: 'legal tokens in an illegal order', example_message: Their Wealth Not-a-Number}
+      - {category: Zero, cause: 'a value of zero', example_message: Wealth Zero}
+      - {category: Negative, cause: 'a value below zero', example_message: Spend Negative}
+  numeric_bounded_parameters:
+    applies_to: [rate, period]
+    values: [Missing, Malformed, Invalid, Outside Range]
+    detail: >-
+      Bounds are exclusive and are never clamped. `Invalid` names the excluded bound the value landed on
+      exactly — Rate Invalid (0), Rate Invalid (1), Period Invalid (0), Period Invalid (100) — while a
+      value past a bound returns Rate Outside Range or Period Outside Range.
+  enum_parameters:
+    applies_to: [typeOfMoney, typeOfItem, frequency, expression]
+    values: [Missing, Invalid]
+    example_messages: [Type Of Money Invalid, Expression Invalid]
+problems:
+  - status: 400
+    message: Wealth Malformed
+    title: Request error
+    remediation: 'Supply digits with the magnitude letter, e.g. wealth=1B, not wealth=B.'
+    source_operation: openapi/we-ultrarich-openapi-original.yml#durationOfDailySpend
+    verified_live: '2026-08-09'
+    example_file: ../examples/we-ultrarich-error-400-example.json
+  - status: 400
+    message: Spend Negative
+    title: Request error
+    remediation: Supply a positive daily spend amount.
+    source_operation: openapi/we-ultrarich-openapi-original.yml#durationOfDailySpend
+  - status: 400
+    message: Your Wealth Missing
+    title: Request error
+    remediation: '/comparison requires both wealthYours and wealthTheirs.'
+    source_operation: openapi/we-ultrarich-openapi-original.yml#comparison
+  - status: 400
+    message: Expression Invalid
+    title: Request error
+    remediation: 'expression must be one of durationOfDailySpend, heightOfMoneyStack, numberOfItems, growthOfCompoundInterest.'
+    source_operation: openapi/we-ultrarich-openapi-original.yml#comparison
+  - status: 400
+    message: Rate Invalid (1)
+    title: Request error
+    remediation: 'rate is exclusive of both bounds — use 0 < rate < 1 (0.05 = 5%).'
+    source_operation: openapi/we-ultrarich-openapi-original.yml#growthOfCompoundInterest
+  - status: 400
+    message: Rate Outside Range
+    title: Request error
+    remediation: 'rate landed past a bound (e.g. 2). Express the rate as a decimal fraction.'
+    source_operation: openapi/we-ultrarich-openapi-original.yml#growthOfCompoundInterest
+  - status: 400
+    message: Period Invalid (100)
+    title: Request error
+    remediation: 'period is exclusive of both bounds — use 0 < period < 100 years.'
+    source_operation: openapi/we-ultrarich-openapi-original.yml#growthOfCompoundInterest
+  - status: 400
+    message: Type Of Money Invalid
+    title: Request error
+    remediation: 'Use one of the 22 published typeOfMoney slugs — see vocabulary/we-ultrarich-vocabulary.yml.'
+    source_operation: openapi/we-ultrarich-openapi-original.yml#heightOfMoneyStack
+  - status: 400
+    message: Type Of Item Invalid
+    title: Request error
+    remediation: 'Use one of the 21 published typeOfItem slugs — see vocabulary/we-ultrarich-vocabulary.yml.'
+    source_operation: openapi/we-ultrarich-openapi-original.yml#numberOfItems
+  - status: 429
+    message: Too Many Requests
+    title: Rate limit exceeded
+    remediation: >-
+      Honour the Retry-After header (authoritative) or error.retryAfter; the shared /v1 budget is 100
+      requests/minute per IP, the MCP server 300/minute.
+    response_headers: [Retry-After]
+    extra_fields: [details, retryAfter]
+    source_operation: 'all operations'
+mcp_errors:
+  note: >-
+    MCP tool failures do not carry the REST envelope. Check CallToolResult.isError (native SDK) or
+    mcp_tool_result.is_error (Anthropic Messages API connector); the presence of expected fields such as
+    `ratio` is an additional success check. JSON-RPC method errors use standard codes — prompts/list and
+    resources/list return -32601 Method not found because the server exposes only the tools capability.

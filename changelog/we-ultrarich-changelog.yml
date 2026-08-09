@@ -1,0 +1,58 @@
+generated: '2026-08-09'
+method: searched
+source: https://wegtultrarich.org/CHANGELOG.md
+format: Keep a Changelog 1.1.0
+scheme: semver
+current_version: 1.4.0
+current_released: '2026-08-05'
+window: recent releases only — the live changelog is the source of truth
+entries:
+  - version: '1.4.0'
+    date: '2026-08-05'
+    breaking: false
+    added:
+      - >-
+        Support for MCP protocol revision 2026-07-28, served from the same endpoint as 2025-11-25, which
+        remains fully supported. Clients on the new revision select a revision per request; older clients
+        continue to negotiate at initialize. Tool names, input fields and result content are identical
+        under both. No client action required.
+      - >-
+        tools/list results now carry ttlMs (3600000) and cacheScope public per SEP-2549, on the 2026-07-28
+        path only — the tool catalogue is static and identical for every caller, so cache it.
+  - version: '1.3.0'
+    date: '2026-07-28'
+    breaking: false
+    added:
+      - 'Allow: POST header and a documentation pointer on 405 responses from /mcp.'
+      - Documented the RateLimit-* response header family.
+      - Terms Of Use page (2026-07-26) plus links from the other documentation.
+      - >-
+        README overhaul (2026-07-26) — quick start with a complete working request, table of contents,
+        endpoint summary table, full error catalogue (six money-value categories, exclusive-bound behavior
+        of rate and period, enum categories, prose-to-camelCase parameter name map), the 429 body
+        (details, retryAfter) and Retry-After header, the five MCP tool names mapped to REST equivalents,
+        a "Using Results Well" section, a dedicated attribution section.
+    changed:
+      - >-
+        Rewrote MCP tool and parameter descriptions for clearer model-facing guidance — the provider notes
+        these descriptions are part of the interface and change as minor versions.
+      - Moved shared response conventions into the MCP server `instructions`.
+      - Endpoint paths written relative to the REST base URL, matching openapi.yaml.
+    fixed:
+      - >-
+        Corrected conflicting base URL declarations in the README that could produce invalid /v1/v1/… paths.
+  - version: '1.2.2'
+    date: '2026-07-25'
+    breaking: false
+    added:
+      - Media-type-level response examples for all six operations in the OpenAPI spec.
+      - APIs.json 0.21 index at https://api.wegtultrarich.org/apis.json
+      - Agent prompt at https://api.wegtultrarich.org/prompts/agent-prompt.md
+      - Spectral governance ruleset at https://api.wegtultrarich.org/governance/spectral.yaml
+      - '`Rate Invalid (1)` error example in the README.'
+  - version: '1.2.1'
+    date: '2026-07-24'
+    breaking: false
+    changed:
+      - 'MCP serverInfo.name from we-gt-ultrarich to wegtultrarich (canonical identifier); added title.'
+unreleased: []

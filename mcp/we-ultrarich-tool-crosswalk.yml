@@ -1,0 +1,74 @@
+generated: '2026-08-09'
+method: derived
+source: mcp/we-ultrarich-tools-list.json + openapi/we-ultrarich-openapi-original.yml
+surfaces:
+  openapi:
+    file: openapi/we-ultrarich-openapi-original.yml
+    url: https://api.wegtultrarich.org/openapi.yaml
+    version: OpenAPI 3.0.4
+    server: https://api.wegtultrarich.org/v1
+    gated: false
+  mcp:
+    url: https://api.wegtultrarich.org/mcp
+    transport: streamable-http
+    gated: false
+    note: tools/list answered anonymously (HTTP 200) — inputSchemas are the REAL published schemas
+  graphql: null
+  asyncapi: null
+note: >-
+  The MCP surface and the REST surface are one-to-one on the five wealth expressions: every tool maps to
+  exactly one GET operation, tool names are snake_case where operationIds are camelCase, and the tool input
+  fields carry the same camelCase parameter names as the REST query parameters. The only divergence is the
+  discovery operation `expressions`, which has no MCP tool (an MCP client already gets the catalogue from
+  tools/list), and the response envelope (REST wraps in {status, data}; MCP returns the bare data object
+  plus an `attribution` field).
+crosswalk:
+  - tool: duration_of_daily_spend
+    category: wealth-expression
+    rest: [durationOfDailySpend]
+    binding: rest
+    confidence: high
+    note: 'REST equivalent named in the provider README mapping table; inputs wealth+spend match exactly'
+  - tool: height_of_money_stack
+    category: wealth-expression
+    rest: [heightOfMoneyStack]
+    binding: rest
+    confidence: high
+    note: 'inputs wealth+typeOfMoney match; the 22-value typeOfMoney enum is identical in both surfaces'
+  - tool: number_of_items
+    category: wealth-expression
+    rest: [numberOfItems]
+    binding: rest
+    confidence: high
+    note: 'inputs wealth+typeOfItem match; the 21-value typeOfItem enum is identical in both surfaces'
+  - tool: growth_of_compound_interest
+    category: wealth-expression
+    rest: [growthOfCompoundInterest]
+    binding: rest
+    confidence: high
+    note: 'inputs wealth+rate+frequency+period match, including the exclusive bounds on rate and period'
+  - tool: comparison
+    category: comparison
+    rest: [comparison]
+    binding: rest
+    confidence: high
+    note: 'inputs expression+wealthYours+wealthTheirs plus the per-expression optionals match exactly'
+mcp_only: []
+rest_only:
+  - operation: expressions
+    capability: discovery
+    reason: >-
+      Lists the available wealth-expression routes. An MCP client gets the equivalent catalogue from
+      tools/list, so the provider does not expose it as a tool.
+coverage:
+  tools_named: 5
+  tools_bound: 5
+  mcp_only: 0
+  rest_operations_total: 6
+  rest_operations_with_tool: 5
+x-evidence:
+  fetched: '2026-08-09'
+  probes:
+    - {url: 'https://api.wegtultrarich.org/mcp', method: 'POST tools/list', http_status: 200}
+    - {url: 'https://api.wegtultrarich.org/openapi.yaml', http_status: 200}
+    - {url: 'https://api.wegtultrarich.org/README.md', http_status: 200, note: 'publishes the tool -> REST equivalent mapping table used to confirm each binding'}

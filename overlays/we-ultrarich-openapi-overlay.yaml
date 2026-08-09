@@ -1,0 +1,64 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for We > Ultrarich API
+  version: 1.0.0
+x-generated: '2026-08-09'
+x-method: generated
+x-source: openapi/we-ultrarich-openapi-original.yml
+extends: openapi/we-ultrarich-openapi-original.yml
+actions:
+  - target: $.info
+    description: Provenance and catalog cross-links for the API Evangelist profile.
+    update:
+      x-apievangelist-slug: we-ultrarich
+      x-apievangelist-reviewed: '2026-08-09'
+      x-apievangelist-artifacts:
+        conventions: conventions/we-ultrarich-conventions.yml
+        errors: errors/we-ultrarich-problem-types.yml
+        vocabulary: vocabulary/we-ultrarich-vocabulary.yml
+        data-model: data-model/we-ultrarich-data-model.yml
+        rate-limits: rate-limits/we-ultrarich-rate-limits.yml
+        mcp: mcp/we-ultrarich-mcp.yml
+        tool-crosswalk: mcp/we-ultrarich-tool-crosswalk.yml
+  - target: $.info
+    description: >-
+      Record the MCP projection of this contract as a first-class alternate surface, so an agent reading
+      only the OpenAPI can find the tool endpoint.
+    update:
+      x-mcp-server:
+        url: https://api.wegtultrarich.org/mcp
+        transport: streamable-http
+        authentication: none
+        tools: 5
+        server_card: https://api.wegtultrarich.org/.well-known/mcp.json
+  - target: $.servers[0]
+    description: Record the observed live rate-limit policy on the production server.
+    update:
+      x-rate-limit:
+        limit: 100
+        window_seconds: 60
+        scope: per-ip
+        headers: [RateLimit-Policy, RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, Retry-After]
+  - target: $.paths['/expressions'].get
+    description: Bind the discovery operation to its MCP equivalent (there is none — the catalogue comes from tools/list).
+    update:
+      x-mcp-tool: null
+      x-mcp-note: REST-only; an MCP client obtains the equivalent catalogue from tools/list.
+  - target: $.paths['/durationOfDailySpend'].get
+    update:
+      x-mcp-tool: duration_of_daily_spend
+  - target: $.paths['/heightOfMoneyStack'].get
+    update:
+      x-mcp-tool: height_of_money_stack
+  - target: $.paths['/numberOfItems'].get
+    update:
+      x-mcp-tool: number_of_items
+  - target: $.paths['/growthOfCompoundInterest'].get
+    update:
+      x-mcp-tool: growth_of_compound_interest
+  - target: $.paths['/comparison'].get
+    update:
+      x-mcp-tool: comparison
+      x-preferred: >-
+        Prefer this operation whenever the caller has mentioned their own wealth — it returns both results
+        and a direction-aware ratio in one call.
