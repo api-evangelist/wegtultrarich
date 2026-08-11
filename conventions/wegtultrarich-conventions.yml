@@ -2,15 +2,15 @@ generated: '2026-08-09'
 method: searched
 source: https://api.wegtultrarich.org/README.md
 also_derived_from:
-  - openapi/we-ultrarich-openapi-original.yml
-  - mcp/we-ultrarich-tools-list.json
+  - openapi/wegtultrarich-openapi-original.yml
+  - mcp/wegtultrarich-tools-list.json
   - live response headers observed 2026-08-09 on https://api.wegtultrarich.org/v1/comparison
 authentication:
   style: none
   detail: >-
     No authentication, no account, no API key, on either the REST API or the MCP server. Technical request
     data is processed transiently for rate limiting, security and operations only.
-  see_also: authentication/we-ultrarich-authentication.yml
+  see_also: authentication/wegtultrarich-authentication.yml
 http:
   methods: [GET]
   detail: Every REST operation is a read-only GET with query parameters; there are no write operations.
@@ -30,9 +30,9 @@ idempotency:
     carries the annotations `readOnlyHint: true`, `idempotentHint: true` and `openWorldHint: false`, and
     successful REST responses are declared cacheable (`Cache-Control: public, max-age=3600`).
   evidence:
-    - source: mcp/we-ultrarich-tools-list.json
+    - source: mcp/wegtultrarich-tools-list.json
       detail: 'all 5 tools declare annotations.idempotentHint = true and annotations.readOnlyHint = true'
-    - source: openapi/we-ultrarich-openapi-original.yml
+    - source: openapi/wegtultrarich-openapi-original.yml
       detail: 'all 6 operations are GET; no POST/PUT/PATCH/DELETE exists'
     - source: 'live response headers'
       detail: 'cache-control: public, max-age=3600, stale-while-revalidate=86400'
@@ -64,7 +64,7 @@ versioning:
   mcp_protocol_negotiation: >-
     The MCP endpoint answers revisions 2025-03-26, 2025-06-18, 2025-11-25 and 2026-07-28 from the same URL;
     on 2026-07-28 the client selects a revision per request and must send Mcp-Method and Mcp-Name headers.
-  see_also: lifecycle/we-ultrarich-lifecycle.yml
+  see_also: lifecycle/wegtultrarich-lifecycle.yml
 response_envelope:
   rest_success: '{"status":"success","data":{...}}'
   rest_error: '{"status":"error","error":{"code":<int>,"message":"<prose>"}}'
@@ -83,7 +83,7 @@ response_envelope:
     - Quote `sentence`; do not rebuild prose from `value`.
     - Do not re-round `value` — the prose fields already apply the project rounding conventions.
     - Branch on `scale`; omit the line when null rather than inventing a substitute.
-  see_also: errors/we-ultrarich-problem-types.yml
+  see_also: errors/wegtultrarich-problem-types.yml
 input_conventions:
   money_values:
     accepted: ['plain numbers (1000000000)', 'formatted numbers (1,000,000,000)', 'shorthand (1B, 750B, 1T)']
@@ -110,7 +110,7 @@ rate_limits:
   caching_caveat: >-
     A response served from cache carries the RateLimit-* values from when it was stored — treat them as a
     hint, not a ledger; a 429 is the authoritative signal.
-  see_also: rate-limits/we-ultrarich-rate-limits.yml
+  see_also: rate-limits/wegtultrarich-rate-limits.yml
 attribution:
   required: true
   string: 'Source: We > Ultrarich (wegtultrarich.org).'

@@ -1,7 +1,7 @@
 generated: '2026-08-09'
 method: searched
 source: https://api.wegtultrarich.org/README.md#errors
-also_derived_from: openapi/we-ultrarich-openapi-original.yml
+also_derived_from: openapi/wegtultrarich-openapi-original.yml
 format: vendor-envelope
 format_note: >-
   Not RFC 9457. Errors are returned as application/json with a vendor envelope
@@ -58,49 +58,49 @@ problems:
     message: Wealth Malformed
     title: Request error
     remediation: 'Supply digits with the magnitude letter, e.g. wealth=1B, not wealth=B.'
-    source_operation: openapi/we-ultrarich-openapi-original.yml#durationOfDailySpend
+    source_operation: openapi/wegtultrarich-openapi-original.yml#durationOfDailySpend
     verified_live: '2026-08-09'
-    example_file: ../examples/we-ultrarich-error-400-example.json
+    example_file: ../examples/wegtultrarich-error-400-example.json
   - status: 400
     message: Spend Negative
     title: Request error
     remediation: Supply a positive daily spend amount.
-    source_operation: openapi/we-ultrarich-openapi-original.yml#durationOfDailySpend
+    source_operation: openapi/wegtultrarich-openapi-original.yml#durationOfDailySpend
   - status: 400
     message: Your Wealth Missing
     title: Request error
     remediation: '/comparison requires both wealthYours and wealthTheirs.'
-    source_operation: openapi/we-ultrarich-openapi-original.yml#comparison
+    source_operation: openapi/wegtultrarich-openapi-original.yml#comparison
   - status: 400
     message: Expression Invalid
     title: Request error
     remediation: 'expression must be one of durationOfDailySpend, heightOfMoneyStack, numberOfItems, growthOfCompoundInterest.'
-    source_operation: openapi/we-ultrarich-openapi-original.yml#comparison
+    source_operation: openapi/wegtultrarich-openapi-original.yml#comparison
   - status: 400
     message: Rate Invalid (1)
     title: Request error
     remediation: 'rate is exclusive of both bounds — use 0 < rate < 1 (0.05 = 5%).'
-    source_operation: openapi/we-ultrarich-openapi-original.yml#growthOfCompoundInterest
+    source_operation: openapi/wegtultrarich-openapi-original.yml#growthOfCompoundInterest
   - status: 400
     message: Rate Outside Range
     title: Request error
     remediation: 'rate landed past a bound (e.g. 2). Express the rate as a decimal fraction.'
-    source_operation: openapi/we-ultrarich-openapi-original.yml#growthOfCompoundInterest
+    source_operation: openapi/wegtultrarich-openapi-original.yml#growthOfCompoundInterest
   - status: 400
     message: Period Invalid (100)
     title: Request error
     remediation: 'period is exclusive of both bounds — use 0 < period < 100 years.'
-    source_operation: openapi/we-ultrarich-openapi-original.yml#growthOfCompoundInterest
+    source_operation: openapi/wegtultrarich-openapi-original.yml#growthOfCompoundInterest
   - status: 400
     message: Type Of Money Invalid
     title: Request error
-    remediation: 'Use one of the 22 published typeOfMoney slugs — see vocabulary/we-ultrarich-vocabulary.yml.'
-    source_operation: openapi/we-ultrarich-openapi-original.yml#heightOfMoneyStack
+    remediation: 'Use one of the 22 published typeOfMoney slugs — see vocabulary/wegtultrarich-vocabulary.yml.'
+    source_operation: openapi/wegtultrarich-openapi-original.yml#heightOfMoneyStack
   - status: 400
     message: Type Of Item Invalid
     title: Request error
-    remediation: 'Use one of the 21 published typeOfItem slugs — see vocabulary/we-ultrarich-vocabulary.yml.'
-    source_operation: openapi/we-ultrarich-openapi-original.yml#numberOfItems
+    remediation: 'Use one of the 21 published typeOfItem slugs — see vocabulary/wegtultrarich-vocabulary.yml.'
+    source_operation: openapi/wegtultrarich-openapi-original.yml#numberOfItems
   - status: 429
     message: Too Many Requests
     title: Rate limit exceeded

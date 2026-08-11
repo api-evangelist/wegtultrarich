@@ -7,7 +7,7 @@ info:
     purchasing-power lens on the ultrarich side — the three calls behind a quotable inequality briefing.
 sourceDescriptions:
   - name: weUltrarich
-    url: ../openapi/we-ultrarich-openapi-original.yml
+    url: ../openapi/wegtultrarich-openapi-original.yml
     type: openapi
 workflows:
   - workflowId: wealthInequalityBriefing

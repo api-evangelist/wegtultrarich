@@ -1,7 +1,7 @@
 generated: '2026-08-09'
 method: generated
 workflows:
-  - file: we-ultrarich-wealth-inequality-briefing.yml
+  - file: wegtultrarich-wealth-inequality-briefing.yml
     workflowId: wealthInequalityBriefing
     title: We > Ultrarich — wealth inequality briefing
     summary: >-

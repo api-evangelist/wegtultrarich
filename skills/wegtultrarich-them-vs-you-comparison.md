@@ -3,12 +3,12 @@ name: Compare a person's wealth against ultrarich wealth
 description: >-
   Turn "how does my net worth compare to a billionaire's?" into a quotable, direction-aware comparison in a
   single call, using the We > Ultrarich /comparison operation.
-api: openapi/we-ultrarich-openapi-original.yml
+api: openapi/wegtultrarich-openapi-original.yml
 operations: [comparison]
 mcp_tools: [comparison]
 generated: '2026-08-09'
 method: generated
-source: openapi/we-ultrarich-openapi-original.yml + https://api.wegtultrarich.org/prompts/agent-prompt.md
+source: openapi/wegtultrarich-openapi-original.yml + https://api.wegtultrarich.org/prompts/agent-prompt.md
 ---
 
 # Compare a person's wealth against ultrarich wealth
@@ -34,7 +34,7 @@ None. No account, no API key, no headers. Base URL `https://api.wegtultrarich.or
    `heightOfMoneyStack` needs `typeOfMoney` (22 slugs); `numberOfItems` needs `typeOfItem` (21 slugs);
    `growthOfCompoundInterest` needs `rate` (0 < rate < 1, exclusive), `frequency`
    (`1|2|4|12|365`) and `period` (0 < period < 100, exclusive). See
-   `vocabulary/we-ultrarich-vocabulary.yml` for every slug.
+   `vocabulary/wegtultrarich-vocabulary.yml` for every slug.
 4. **Call `comparison`** — `GET /v1/comparison?expression=…&wealthYours=…&wealthTheirs=…&…`.
 5. **Read the payload.** `data.resultYours`, `data.resultTheirs` and `data.ratio`, each with
    `value`, `phrase`, `sentence` and `scale`.
@@ -53,14 +53,14 @@ GET https://api.wegtultrarich.org/v1/comparison?expression=durationOfDailySpend&
 
 Returns `ratio.phrase` `10,000,000 : 1`, `ratio.sentence` "Their wealth is 10,000,000 times yours.",
 `ratio.scale` "That's extreme wealth inequality.", and `resultYours.scale` `null` (100 days is too short to
-anchor). Captured verbatim at `examples/we-ultrarich-comparison-durationOfDailySpend-example.json`.
+anchor). Captured verbatim at `examples/wegtultrarich-comparison-durationOfDailySpend-example.json`.
 
 ## Errors
 
 Errors are `{"status":"error","error":{"code":400,"message":"…"}}` — **not** RFC 9457. The message names
 the parameter in prose then the category: `Your Wealth Missing`, `Expression Invalid`, `Rate Invalid (1)`,
 `Rate Outside Range`. Map prose names back to camelCase with the table in
-`errors/we-ultrarich-problem-types.yml`. Bounds on `rate` and `period` are exclusive and never clamped.
+`errors/wegtultrarich-problem-types.yml`. Bounds on `rate` and `period` are exclusive and never clamped.
 
 ## Rate limits and retries
 

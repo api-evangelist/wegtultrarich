@@ -1,6 +1,6 @@
 generated: '2026-08-09'
 method: derived
-source: openapi/we-ultrarich-openapi-original.yml
+source: openapi/wegtultrarich-openapi-original.yml
 note: >-
   The OpenAPI declares every schema inline — components.schemas is empty — so the entities below are the
   recurring inline shapes named by their role. There are no persisted resources and therefore no ids, no
@@ -23,7 +23,7 @@ entities:
       - {name: message, type: string, note: 'prose parameter name + category, e.g. "Wealth Malformed"'}
       - {name: details, type: string, note: 429 only}
       - {name: retryAfter, type: integer, note: 429 only, seconds}
-    see_also: errors/we-ultrarich-problem-types.yml
+    see_also: errors/wegtultrarich-problem-types.yml
   - name: Result
     description: >-
       The universal wealth-expression result. Returned by durationOfDailySpend, heightOfMoneyStack,

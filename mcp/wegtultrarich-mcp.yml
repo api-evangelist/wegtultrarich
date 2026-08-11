@@ -24,9 +24,9 @@ server:
     url: https://api.wegtultrarich.org/.well-known/mcp.json
     alias: https://api.wegtultrarich.org/.well-known/mcp-server-card
     schema: https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json
-    file: ../well-known/we-ultrarich-mcp.json
+    file: ../well-known/wegtultrarich-mcp.json
   tools_list:
-    file: we-ultrarich-tools-list.json
+    file: wegtultrarich-tools-list.json
     note: verbatim tools/list response captured anonymously; real inputSchema per tool
   methods_supported:
     - initialize
@@ -53,7 +53,7 @@ tools:
       to spend a billion dollars?"
     required: [wealth, spend]
     annotations: {readOnlyHint: true, idempotentHint: true, openWorldHint: false}
-    source_operation: openapi/we-ultrarich-openapi-original.yml#durationOfDailySpend
+    source_operation: openapi/wegtultrarich-openapi-original.yml#durationOfDailySpend
   - name: height_of_money_stack
     title: Height Of Money Stack
     description: >-
@@ -61,7 +61,7 @@ tools:
       performed — typeOfMoney's currency overrides any symbol on wealth.
     required: [wealth, typeOfMoney]
     annotations: {readOnlyHint: true, idempotentHint: true, openWorldHint: false}
-    source_operation: openapi/we-ultrarich-openapi-original.yml#heightOfMoneyStack
+    source_operation: openapi/wegtultrarich-openapi-original.yml#heightOfMoneyStack
   - name: number_of_items
     title: Number Of Items Paid For
     description: >-
@@ -69,14 +69,14 @@ tools:
       approximate U.S. benchmarks in USD.
     required: [wealth, typeOfItem]
     annotations: {readOnlyHint: true, idempotentHint: true, openWorldHint: false}
-    source_operation: openapi/we-ultrarich-openapi-original.yml#numberOfItems
+    source_operation: openapi/wegtultrarich-openapi-original.yml#numberOfItems
   - name: growth_of_compound_interest
     title: Growth Of Compound Interest
     description: >-
       How much a wealth grows from compound interest alone, untouched, over a period.
     required: [wealth, rate, frequency, period]
     annotations: {readOnlyHint: true, idempotentHint: true, openWorldHint: false}
-    source_operation: openapi/we-ultrarich-openapi-original.yml#growthOfCompoundInterest
+    source_operation: openapi/wegtultrarich-openapi-original.yml#growthOfCompoundInterest
   - name: comparison
     title: Full Comparison Of Two Wealths
     description: >-
@@ -85,7 +85,7 @@ tools:
     required: [expression, wealthYours, wealthTheirs]
     optional: [spend, typeOfMoney, typeOfItem, rate, frequency, period]
     annotations: {readOnlyHint: true, idempotentHint: true, openWorldHint: false}
-    source_operation: openapi/we-ultrarich-openapi-original.yml#comparison
+    source_operation: openapi/wegtultrarich-openapi-original.yml#comparison
 naming:
   note: >-
     Tool names are snake_case while their input fields keep the same camelCase parameter names as the REST

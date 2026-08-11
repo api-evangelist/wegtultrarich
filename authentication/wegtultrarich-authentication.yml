@@ -1,7 +1,7 @@
 generated: '2026-08-09'
 method: searched
 docs: https://api.wegtultrarich.org/README.md#access-and-rate-limits
-source: openapi/we-ultrarich-openapi-original.yml
+source: openapi/wegtultrarich-openapi-original.yml
 summary:
   types: [none]
   api_key_in: []
@@ -33,7 +33,7 @@ model:
 access_controls_in_place_of_auth:
   - control: per-IP rate limiting
     detail: '100 req/min across /v1, 300 req/min for MCP, 500 req/min for docs'
-    see_also: rate-limits/we-ultrarich-rate-limits.yml
+    see_also: rate-limits/wegtultrarich-rate-limits.yml
   - control: CORS open by design
     detail: 'Access-Control-Allow-Origin: * so browser-side and agent-generated code can call directly'
   - control: read-only surface

@@ -1,6 +1,6 @@
 generated: '2026-08-09'
 method: derived
-source: openapi/we-ultrarich-openapi-original.yml
+source: openapi/wegtultrarich-openapi-original.yml
 description: >-
   The controlled vocabularies the We > Ultrarich API accepts as enumerated query-parameter values, lifted
   verbatim from the OpenAPI 3.0.4 document. Identical enums are carried by the MCP tool inputSchemas.

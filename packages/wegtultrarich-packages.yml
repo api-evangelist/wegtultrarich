@@ -12,7 +12,7 @@ detail: >-
 registries_checked:
   - {registry: npm, query: wegtultrarich, results: 0, url: 'https://registry.npmjs.org/-/v1/search?text=wegtultrarich'}
   - {registry: pypi, query: wegtultrarich, status: 404, url: 'https://pypi.org/pypi/wegtultrarich/json'}
-  - {registry: pypi, query: we-ultrarich, status: 404, url: 'https://pypi.org/pypi/we-ultrarich/json'}
+  - {registry: pypi, query: wegtultrarich, status: 404, url: 'https://pypi.org/pypi/wegtultrarich/json'}
   - {registry: github, query: 'github.com/wegtultrarich', status: 404}
   - {registry: github, query: 'github.com/wegtultrarich/mcp-server', status: 404, note: 'referenced by SECURITY.md; account restoration pending'}
 note_on_soft_404: >-

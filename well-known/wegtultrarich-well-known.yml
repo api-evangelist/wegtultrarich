@@ -5,16 +5,16 @@ hosts:
     documents:
       - path: /.well-known/security.txt          # RFC 9116
         status: 200
-        file: we-ultrarich-security.txt
+        file: wegtultrarich-security.txt
       - path: /.well-known/apis.json             # APIs.json 0.21 discovery index
         status: 200
-        file: we-ultrarich-apis.json
+        file: wegtultrarich-apis.json
       - path: /.well-known/mcp.json              # MCP server card
         status: 200
-        file: we-ultrarich-mcp.json
+        file: wegtultrarich-mcp.json
       - path: /.well-known/mcp-server-card       # alias of /.well-known/mcp.json (identical body)
         status: 200
-        file: we-ultrarich-mcp.json
+        file: wegtultrarich-mcp.json
       - path: /.well-known/openid-configuration
         status: 404
       - path: /.well-known/oauth-authorization-server

@@ -1,0 +1,128 @@
+openapi: 3.2.0
+info:
+  title: We > Ultrarich Discovery API
+  description: 'We > Ultrarich (We Are Greater Than The Ultrarich) makes extreme wealth inequality tangible. It presents billionaire and trillionaire fortunes in personalized comparisons: Duration Of Daily Spend (Daily Spending), Height Of Stacked Money (Physical Size), Number Of Items Paid For (Purchasing Power), and Growth Of Compound Interest (Compound Interest).
+
+
+    An MCP (Model Context Protocol) server exposing these operations as agent tools is available at https://api.wegtultrarich.org/mcp. The server answers both MCP revisions `2026-07-28` and `2025-11-25`.
+
+
+    Free for any use, including commercial. Results are licensed CC BY 4.0 — please use the attribution "Source: We > Ultrarich (wegtultrarich.org)." The API''s source code is not open source; view [LICENSE.md](https://wegtultrarich.org/LICENSE.md).
+
+
+    Naming: Write it as `We > Ultrarich` (or `We Are Greater Than The Ultrarich` where > won''t work). Use `wegtultrarich` in identifiers. Full guide in [LICENSE.md](https://wegtultrarich.org/LICENSE.md#name--wordmark--all-rights-reserved).
+
+    '
+  termsOfService: https://wegtultrarich.org/terms-of-use.html
+  version: 1.4.0
+  contact:
+    name: We > Ultrarich Support
+    email: info@wegtultrarich.org
+    url: https://wegtultrarich.org/faq.html
+  license:
+    name: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+  x-privacy-policy-url: https://wegtultrarich.org/privacy-policy.html
+servers:
+- url: https://api.wegtultrarich.org/v1
+  description: Main (Production) Server
+security: []
+tags:
+- name: Discovery
+  description: Discover (list) the available endpoints.
+paths:
+  /expressions:
+    get:
+      operationId: expressions
+      summary: Available Endpoints
+      description: Returns an array of routes listing the endpoint uri paths of the four wealth expressions plus the comparison.
+      tags:
+      - Discovery
+      responses:
+        '200':
+          description: a JSON object with response data
+          content:
+            application/json:
+              example:
+                status: success
+                data:
+                - route: /v1/durationOfDailySpend
+                - route: /v1/heightOfMoneyStack
+                - route: /v1/numberOfItems
+                - route: /v1/growthOfCompoundInterest
+                - route: /v1/comparison
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        route:
+                          type: string
+                          description: The path to each available wealth expression.
+                      required:
+                      - route
+                    example:
+                    - route: /v1/durationOfDailySpend
+                    - route: /v1/heightOfMoneyStack
+                    - route: /v1/numberOfItems
+                    - route: /v1/growthOfCompoundInterest
+                    - route: /v1/comparison
+                required:
+                - status
+                - data
+        '429':
+          description: rate limit exceeded
+          headers:
+            Retry-After:
+              description: The number of seconds remaining until the rate-limit window resets.
+              schema:
+                type: integer
+                example: 60
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 429
+                      message:
+                        type: string
+                        example: Too Many Requests
+                      details:
+                        type: string
+                        example: Rate limit exceeded. Try again in 60 seconds.
+                      retryAfter:
+                        type: integer
+                        example: 60
+                        description: The number of seconds remaining until the rate-limit window resets.
+                    required:
+                    - code
+                    - message
+                    - details
+                    - retryAfter
+                required:
+                - status
+                - error
+      x-ratelimit:
+        limit: 100
+        period: 1 minute
+        unit: requests
+        scope: ip
+        shared: true
+        description: Rate limited to 100 requests per minute per IP, shared across all /v1 endpoints.
+externalDocs:
+  description: API Documentation
+  url: https://api.wegtultrarich.org/README.md

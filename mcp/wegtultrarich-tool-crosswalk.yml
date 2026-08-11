@@ -1,9 +1,9 @@
 generated: '2026-08-09'
 method: derived
-source: mcp/we-ultrarich-tools-list.json + openapi/we-ultrarich-openapi-original.yml
+source: mcp/wegtultrarich-tools-list.json + openapi/wegtultrarich-openapi-original.yml
 surfaces:
   openapi:
-    file: openapi/we-ultrarich-openapi-original.yml
+    file: openapi/wegtultrarich-openapi-original.yml
     url: https://api.wegtultrarich.org/openapi.yaml
     version: OpenAPI 3.0.4
     server: https://api.wegtultrarich.org/v1

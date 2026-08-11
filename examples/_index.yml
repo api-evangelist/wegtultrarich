@@ -6,29 +6,29 @@ note: >-
   examples for all six operations (added in release 1.2.2); these are live captures, not copies of the spec
   examples.
 examples:
-  - file: we-ultrarich-expressions-example.json
+  - file: wegtultrarich-expressions-example.json
     operation: expressions
     request: 'GET /v1/expressions'
-  - file: we-ultrarich-durationOfDailySpend-example.json
+  - file: wegtultrarich-durationOfDailySpend-example.json
     operation: durationOfDailySpend
     request: 'GET /v1/durationOfDailySpend?wealth=1B&spend=1000'
-  - file: we-ultrarich-heightOfMoneyStack-example.json
+  - file: wegtultrarich-heightOfMoneyStack-example.json
     operation: heightOfMoneyStack
     request: 'GET /v1/heightOfMoneyStack?wealth=1T&typeOfMoney=usd_1_coin'
-  - file: we-ultrarich-numberOfItems-example.json
+  - file: wegtultrarich-numberOfItems-example.json
     operation: numberOfItems
     request: 'GET /v1/numberOfItems?wealth=250B&typeOfItem=year_of_salary_65k'
-  - file: we-ultrarich-growthOfCompoundInterest-example.json
+  - file: wegtultrarich-growthOfCompoundInterest-example.json
     operation: growthOfCompoundInterest
     request: 'GET /v1/growthOfCompoundInterest?wealth=100B&rate=0.05&frequency=12&period=10'
-  - file: we-ultrarich-comparison-example.json
+  - file: wegtultrarich-comparison-example.json
     operation: comparison
     request: 'GET /v1/comparison?expression=numberOfItems&wealthYours=100000&wealthTheirs=1T&typeOfItem=fancy_coffee'
-  - file: we-ultrarich-comparison-durationOfDailySpend-example.json
+  - file: wegtultrarich-comparison-durationOfDailySpend-example.json
     operation: comparison
     request: 'GET /v1/comparison?expression=durationOfDailySpend&wealthYours=100000&wealthTheirs=1T&spend=1000'
     note: 'shows a null `scale` on resultYours — the nullable-by-design field agents must branch on'
-  - file: we-ultrarich-error-400-example.json
+  - file: wegtultrarich-error-400-example.json
     operation: durationOfDailySpend
     request: 'GET /v1/durationOfDailySpend?wealth=B&spend=1K'
     status: 400

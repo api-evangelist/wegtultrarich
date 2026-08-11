@@ -4,22 +4,22 @@ info:
   version: 1.0.0
 x-generated: '2026-08-09'
 x-method: generated
-x-source: openapi/we-ultrarich-openapi-original.yml
-extends: openapi/we-ultrarich-openapi-original.yml
+x-source: openapi/wegtultrarich-openapi-original.yml
+extends: openapi/wegtultrarich-openapi-original.yml
 actions:
   - target: $.info
     description: Provenance and catalog cross-links for the API Evangelist profile.
     update:
-      x-apievangelist-slug: we-ultrarich
+      x-apievangelist-slug: wegtultrarich
       x-apievangelist-reviewed: '2026-08-09'
       x-apievangelist-artifacts:
-        conventions: conventions/we-ultrarich-conventions.yml
-        errors: errors/we-ultrarich-problem-types.yml
-        vocabulary: vocabulary/we-ultrarich-vocabulary.yml
-        data-model: data-model/we-ultrarich-data-model.yml
-        rate-limits: rate-limits/we-ultrarich-rate-limits.yml
-        mcp: mcp/we-ultrarich-mcp.yml
-        tool-crosswalk: mcp/we-ultrarich-tool-crosswalk.yml
+        conventions: conventions/wegtultrarich-conventions.yml
+        errors: errors/wegtultrarich-problem-types.yml
+        vocabulary: vocabulary/wegtultrarich-vocabulary.yml
+        data-model: data-model/wegtultrarich-data-model.yml
+        rate-limits: rate-limits/wegtultrarich-rate-limits.yml
+        mcp: mcp/wegtultrarich-mcp.yml
+        tool-crosswalk: mcp/wegtultrarich-tool-crosswalk.yml
   - target: $.info
     description: >-
       Record the MCP projection of this contract as a first-class alternate surface, so an agent reading

@@ -9,7 +9,14 @@ description: >-
   linted against. Published by Blonde Rocket Scientist LLC; results are licensed CC BY 4.0 with a required attribution
   string.
 image: https://wegtultrarich.org/apple-touch-icon.png
-url: https://we-ultrarich.apievangelist.com/apis.yml
+# THEIR index, not ours. The `apis_json_self_hosted` check asks whether the
+# provider publishes their own APIs.json, and it reads THIS field — so pointing
+# it at a *.apievangelist.com mirror made the check answer "no" about a provider
+# who serves the document at two paths on their own domain. Reported by the
+# provider, who correctly declined to change it themselves. Verified 2026-08-11:
+# both https://api.wegtultrarich.org/apis.json and /.well-known/apis.json return
+# 200 application/json, byte-identical.
+url: https://api.wegtultrarich.org/apis.json
 created: '2026-07-25'
 modified: '2026-08-09'
 specificationVersion: '0.21'
@@ -26,71 +33,115 @@ tags:
   - model context protocol
   - agents
 apis:
-  - name: We > Ultrarich REST API
-    description: >-
-      Free, no-auth read-only REST API returning JSON wealth-comparison computations across four lenses plus a combined
-      them-vs-you comparison. Six GET operations, OpenAPI 3.0.4, standard RateLimit-* headers on every response, CORS
-      open to all origins. Rate limited to 100 requests per minute per IP.
-    humanURL: https://api.wegtultrarich.org/
-    baseURL: https://api.wegtultrarich.org/v1
-    tags:
-      - wealth inequality
-      - economic inequality
-      - finance
-      - economics
-      - education
-      - journalism
-      - open data
-      - comparison
-    properties:
-      - type: OpenAPI
-        url: https://api.wegtultrarich.org/openapi.yaml
-      - type: OpenAPI
-        name: We > Ultrarich API (harvested)
-        url: openapi/we-ultrarich-openapi-original.yml
-      - type: Documentation
-        url: https://api.wegtultrarich.org/README.md
-      - type: APIReference
-        url: https://api.wegtultrarich.org/
-      - type: GettingStarted
-        url: https://api.wegtultrarich.org/README.md#quick-start
-      - type: PostmanCollection
-        url: https://www.postman.com/wegtultrarich/we-ultrarich-extreme-wealth-api-mcp-server/collection/kcacxo9/start-here-four-ways-to-understand-extreme-wealth
-      - type: Examples
-        url: examples/_index.yml
-      - type: Overlay
-        url: overlays/we-ultrarich-openapi-overlay.yaml
-      - type: Arazzo
-        name: Wealth inequality briefing
-        url: arazzo/we-ultrarich-wealth-inequality-briefing.yml
-  - name: We > Ultrarich MCP Server
-    description: >-
-      Hosted, no-auth Model Context Protocol server (Streamable HTTP) exposing the same five wealth computations as
-      agent tools with published JSON Schema inputs. Answers protocol revisions 2025-03-26 through 2026-07-28 from one
-      endpoint, holds no session state, and returns the bare data object plus an attribution string. Rate limited to
-      300 requests per minute per IP.
-    humanURL: https://api.wegtultrarich.org/README.md#mcp-server
-    baseURL: https://api.wegtultrarich.org/mcp
-    tags:
-      - mcp
-      - model context protocol
-      - agents
-      - wealth inequality
-      - comparison
-    properties:
-      - type: MCPServer
-        url: mcp/we-ultrarich-mcp.yml
-      - type: MCP
-        url: https://api.wegtultrarich.org/mcp
-      - type: ToolCrosswalk
-        url: mcp/we-ultrarich-tool-crosswalk.yml
-      - type: ModelContextProtocol
-        name: MCP server card
-        url: https://api.wegtultrarich.org/.well-known/mcp.json
-      - type: PostmanCollection
-        url: https://www.postman.com/wegtultrarich/we-ultrarich-extreme-wealth-api-mcp/collection/6a68bfdcf1d9df57e26c3545
-      - type: Documentation
-        url: https://api.wegtultrarich.org/README.md#mcp-server
+- aid: wegtultrarich:wegtultrarich-mcp-server
+  name: We > Ultrarich MCP Server
+  description: >-
+    Hosted, no-auth Model Context Protocol server (Streamable HTTP) exposing the same five wealth computations
+    as agent tools with published JSON Schema inputs. Answers protocol revisions 2025-03-26 through 2026-07-28
+    from one endpoint, holds no session state, and returns the bare data object plus an attribution string.
+    Rate limited to 300 requests per minute per IP.
+  humanURL: https://api.wegtultrarich.org/README.md#mcp-server
+  baseURL: https://api.wegtultrarich.org/mcp
+  tags:
+  - mcp
+  - model context protocol
+  - agents
+  - wealth inequality
+  - comparison
+  properties:
+  - type: MCPServer
+    url: mcp/wegtultrarich-mcp.yml
+  - type: MCP
+    url: https://api.wegtultrarich.org/mcp
+  - type: ToolCrosswalk
+    url: mcp/wegtultrarich-tool-crosswalk.yml
+  - type: ModelContextProtocol
+    name: MCP server card
+    url: https://api.wegtultrarich.org/.well-known/mcp.json
+  - type: PostmanCollection
+    url: >-
+      https://www.postman.com/wegtultrarich/wegtultrarich-extreme-wealth-api-mcp/collection/6a68bfdcf1d9df57e26c3545
+  - type: Documentation
+    url: https://api.wegtultrarich.org/README.md#mcp-server
+- aid: wegtultrarich:wegtultrarich-comparison-api
+  name: We > Ultrarich Comparison API
+  description: >-
+    Compare any wealth expression for two wealths ('yours' and 'theirs') in a single call — get both results
+    as well as the ratio between them.
+  humanURL: https://api.wegtultrarich.org/
+  baseURL: https://api.wegtultrarich.org/v1
+  tags:
+  - Comparison
+  properties:
+  - type: OpenAPI
+    url: openapi/wegtultrarich-comparison-api-openapi.yml
+  # The provider's OWN published document, registered alongside the per-tag
+  # split so the canonical source is pointed at directly rather than only
+  # mirrored. Verified 2026-08-11: 200 text/yaml, OpenAPI 3.0.4 v1.4.0, 6 paths,
+  # and BYTE-IDENTICAL to openapi/_original/ — harvested, not reconstructed.
+  - type: OpenAPI
+    url: https://api.wegtultrarich.org/openapi.yaml
+  - type: Documentation
+    url: https://api.wegtultrarich.org/README.md
+  - type: APIReference
+    url: https://api.wegtultrarich.org/
+  - type: GettingStarted
+    url: https://api.wegtultrarich.org/README.md#quick-start
+  - type: PostmanCollection
+    url: >-
+      https://www.postman.com/wegtultrarich/wegtultrarich-extreme-wealth-api-mcp-server/collection/kcacxo9/start-here-four-ways-to-understand-extreme-wealth
+  - type: Examples
+    url: examples/_index.yml
+  - type: Arazzo
+    url: arazzo/wegtultrarich-wealth-inequality-briefing.yml
+- aid: wegtultrarich:wegtultrarich-discovery-api
+  name: We > Ultrarich Discovery API
+  description: Discover (list) the available endpoints.
+  humanURL: https://api.wegtultrarich.org/
+  baseURL: https://api.wegtultrarich.org/v1
+  tags:
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/wegtultrarich-discovery-api-openapi.yml
+  - type: Documentation
+    url: https://api.wegtultrarich.org/README.md
+  - type: APIReference
+    url: https://api.wegtultrarich.org/
+  - type: GettingStarted
+    url: https://api.wegtultrarich.org/README.md#quick-start
+  - type: PostmanCollection
+    url: >-
+      https://www.postman.com/wegtultrarich/wegtultrarich-extreme-wealth-api-mcp-server/collection/kcacxo9/start-here-four-ways-to-understand-extreme-wealth
+  - type: Examples
+    url: examples/_index.yml
+  - type: Arazzo
+    url: arazzo/wegtultrarich-wealth-inequality-briefing.yml
+- aid: wegtultrarich:wegtultrarich-wealth-expression-api
+  name: We > Ultrarich Wealth Expression API
+  description: >-
+    Express a single wealth through one of four lenses (daily spending, physical size, purchasing power,
+    or compound interest).
+  humanURL: https://api.wegtultrarich.org/
+  baseURL: https://api.wegtultrarich.org/v1
+  tags:
+  - Wealth Expression
+  properties:
+  - type: OpenAPI
+    url: openapi/wegtultrarich-wealth-expression-api-openapi.yml
+  - type: Documentation
+    url: https://api.wegtultrarich.org/README.md
+  - type: APIReference
+    url: https://api.wegtultrarich.org/
+  - type: GettingStarted
+    url: https://api.wegtultrarich.org/README.md#quick-start
+  - type: PostmanCollection
+    url: >-
+      https://www.postman.com/wegtultrarich/wegtultrarich-extreme-wealth-api-mcp-server/collection/kcacxo9/start-here-four-ways-to-understand-extreme-wealth
+  - type: Examples
+    url: examples/_index.yml
+  - type: Arazzo
+    url: arazzo/wegtultrarich-wealth-inequality-briefing.yml
 maintainers:
   - FN: Blonde Rocket Scientist LLC
     email: info@wegtultrarich.org
@@ -101,6 +152,21 @@ generated:
   confidence: 97
   at: '2026-07-25T22:40:48.114Z'
 common:
+  # MCPServer was registered on the MCP API's `properties[]` only. `has_type`
+  # reads the top-level `common[]` block and nothing else, so a live server
+  # scored 0/12 on agent readiness. Reported by the provider, who diagnosed the
+  # cause exactly. Verified 2026-08-11: POST https://api.wegtultrarich.org/mcp
+  # initialize -> 200, serverInfo `wegtultrarich` v1.4.0; tools/list -> 5 tools,
+  # no credential sent, every one carrying an inputSchema.
+  - type: MCPServer
+    url: mcp/wegtultrarich-mcp.yml
+  # Both sent by the provider and both verified 200 on 2026-08-11.
+  - type: StatusPage
+    url: https://wegtultrarich.instatus.com/
+  - type: Pricing
+    url: https://wegtultrarich.org/pricing.html
+  - type: Overlay
+    url: overlays/wegtultrarich-openapi-overlay.yaml
   - type: Website
     url: https://wegtultrarich.org/
   - type: DeveloperPortal
@@ -121,7 +187,7 @@ common:
     url: https://wegtultrarich.org/partners.html
   - type: Postman
     name: We > Ultrarich public Postman workspace
-    url: https://www.postman.com/wegtultrarich/we-ultrarich-extreme-wealth-api-mcp-server/collection/kcacxo9/start-here-four-ways-to-understand-extreme-wealth
+    url: https://www.postman.com/wegtultrarich/wegtultrarich-extreme-wealth-api-mcp-server/collection/kcacxo9/start-here-four-ways-to-understand-extreme-wealth
   - type: TermsOfService
     url: https://wegtultrarich.org/terms-of-use.html
   - type: PrivacyPolicy
@@ -132,48 +198,48 @@ common:
     url: https://wegtultrarich.org/CHANGELOG.md
   - type: ChangeLog
     name: Structured changelog
-    url: changelog/we-ultrarich-changelog.yml
+    url: changelog/wegtultrarich-changelog.yml
   - type: Lifecycle
-    url: lifecycle/we-ultrarich-lifecycle.yml
+    url: lifecycle/wegtultrarich-lifecycle.yml
   - type: Security
     url: https://wegtultrarich.org/SECURITY.md
   - type: VulnerabilityDisclosure
-    url: security/we-ultrarich-vulnerability-disclosure.yml
+    url: security/wegtultrarich-vulnerability-disclosure.yml
   - type: SecurityTxt
     url: https://api.wegtultrarich.org/.well-known/security.txt
   - type: DomainSecurity
-    url: security/we-ultrarich-domain-security.yml
+    url: security/wegtultrarich-domain-security.yml
   - type: WellKnown
-    url: well-known/we-ultrarich-well-known.yml
+    url: well-known/wegtultrarich-well-known.yml
   - type: Authentication
-    url: authentication/we-ultrarich-authentication.yml
+    url: authentication/wegtultrarich-authentication.yml
   - type: Conventions
-    url: conventions/we-ultrarich-conventions.yml
+    url: conventions/wegtultrarich-conventions.yml
   - type: Idempotency
-    url: conventions/we-ultrarich-conventions.yml
+    url: conventions/wegtultrarich-conventions.yml
   - type: ErrorCatalog
-    url: errors/we-ultrarich-problem-types.yml
+    url: errors/wegtultrarich-problem-types.yml
   - type: RateLimits
-    url: rate-limits/we-ultrarich-rate-limits.yml
+    url: rate-limits/wegtultrarich-rate-limits.yml
   - type: Conformance
-    url: conformance/we-ultrarich-conformance.yml
+    url: conformance/wegtultrarich-conformance.yml
   - type: Vocabulary
-    url: vocabulary/we-ultrarich-vocabulary.yml
+    url: vocabulary/wegtultrarich-vocabulary.yml
   - type: DataModel
-    url: data-model/we-ultrarich-data-model.yml
+    url: data-model/wegtultrarich-data-model.yml
   - type: Packages
-    url: packages/we-ultrarich-packages.yml
+    url: packages/wegtultrarich-packages.yml
   - type: Rules
     name: Provider Spectral governance ruleset
-    url: rules/we-ultrarich-spectral.yaml
+    url: rules/wegtultrarich-spectral.yaml
   - type: AgentSkill
     url: skills/_index.yml
   - type: AgentPrompt
-    url: skills/we-ultrarich-agent-prompt.md
+    url: skills/wegtultrarich-agent-prompt.md
   - type: AgenticAccess
-    url: agentic-access/we-ultrarich-agentic-access.yml
+    url: agentic-access/wegtultrarich-agentic-access.yml
   - type: LLMsTxt
-    url: llms/we-ultrarich-llms.txt
+    url: llms/wegtultrarich-llms.txt
   - type: LLMsTxt
     name: llms.txt
     url: https://wegtultrarich.org/llms.txt
@@ -187,3 +253,51 @@ x-enrichment:
   status: enriched
   artifacts_added: 24
   pass: local-v1
+x-evidence:
+  verified: '2026-08-11'
+  request: 'email from info@wegtultrarich.org, thread "Re: We > Ultrarich is live on APIs.io"'
+  note: >-
+    Every claim in the provider's mail was fetched and held up. Two of the three were
+    defects in OUR record, both diagnosed correctly by the provider, and the slug was
+    changed at their request. The amended apis.yml they attached was READ, not applied
+    — see amended_file_not_applied below.
+  fetched:
+  - url: https://api.wegtultrarich.org/mcp
+    status: 200
+    note: 'initialize + tools/list: 5 tools, unauthenticated, each with an inputSchema; serverInfo wegtultrarich v1.4.0'
+  - url: https://api.wegtultrarich.org/apis.json
+    status: 200
+    note: self-hosted index, 7504B
+  - url: https://api.wegtultrarich.org/.well-known/apis.json
+    status: 200
+    note: byte-identical to the above
+  - url: https://api.wegtultrarich.org/openapi.yaml
+    status: 200
+    note: OpenAPI 3.0.4 v1.4.0, 6 paths — BYTE-IDENTICAL to openapi/_original/
+  - url: https://wegtultrarich.instatus.com/
+    status: 200
+    note: status page, newly published
+  - url: https://wegtultrarich.org/pricing.html
+    status: 200
+    note: pricing page, newly published
+  - url: https://api.wegtultrarich.org/.well-known/mcp.json
+    status: 200
+  - url: https://api.wegtultrarich.org/zzz-not-real-9137
+    status: 404
+    note: invented control path — the host discriminates, so its 200s are real
+  amended_file_not_applied: >-
+    The provider attached an amended apis.yml. It was read and merged selectively, not
+    applied, because applying it would have LOST data: it collapses the three per-tag
+    OpenAPI entries this catalog holds into one, which would orphan and then delete
+    three registered spec files on the next rebuild, and it drops the Overlay pointer.
+    It also references openapi/wegtultrarich-openapi-original.yml, which does not exist
+    at that path — the file is under openapi/_original/. Taken from it: the MCPServer,
+    StatusPage and Pricing entries, all three verified live. The per-tag split is kept
+    because it is what the catalog publishes and the split is faithful — three specs
+    totalling exactly the 6 paths of the provider's single published document.
+  slug_change: >-
+    we-ultrarich -> wegtultrarich, at the provider's request, on 2026-08-11. Their
+    domain, their image host and their own MCP serverInfo.name all read wegtultrarich;
+    "We > Ultrarich" does not slugify cleanly because of the ">". The GitHub repo was
+    renamed (GitHub redirects the old path), all 39 artifact files re-prefixed, and the
+    old slug registered in the network retired.yml so every URL it published redirects.
