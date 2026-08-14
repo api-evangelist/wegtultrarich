@@ -1,0 +1,143 @@
+{
+  "item": [
+    {
+      "id": "632c1952-c41d-4df4-89b4-49215ac6a285",
+      "name": "Discovery",
+      "description": {
+        "content": "Discover (list) the available endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2e9a523b-e197-4688-b89f-d0023bf07c41",
+          "name": "Available Endpoints",
+          "request": {
+            "name": "Available Endpoints",
+            "description": {
+              "content": "Returns an array of routes listing the endpoint uri paths of the four wealth expressions plus the comparison.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "expressions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4a09986-ec7a-4ce6-a323-007e438acb23",
+              "name": "a JSON object with response data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "expressions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": [\n    {\n      \"route\": \"/v1/durationOfDailySpend\"\n    },\n    {\n      \"route\": \"/v1/heightOfMoneyStack\"\n    },\n    {\n      \"route\": \"/v1/numberOfItems\"\n    },\n    {\n      \"route\": \"/v1/growthOfCompoundInterest\"\n    },\n    {\n      \"route\": \"/v1/comparison\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e079845d-e004-4c16-97b4-dc1eee2fff4e",
+              "name": "rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "expressions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of seconds remaining until the rate-limit window resets.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Too Many Requests\",\n    \"details\": \"Rate limit exceeded. Try again in 60 seconds.\",\n    \"retryAfter\": 60\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wegtultrarich.org/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6ddf5fe8-64ee-4685-a559-3accd982cb49",
+    "name": "We > Ultrarich Discovery API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "We > Ultrarich (We Are Greater Than The Ultrarich) makes extreme wealth inequality tangible. It presents billionaire and trillionaire fortunes in personalized comparisons: Duration Of Daily Spend (Daily Spending), Height Of Stacked Money (Physical Size), Number Of Items Paid For (Purchasing Power), and Growth Of Compound Interest (Compound Interest).\n\nAn MCP (Model Context Protocol) server exposing these operations as agent tools is available at https://api.wegtultrarich.org/mcp. The server answers both MCP revisions `2026-07-28` and `2025-11-25`.\n\nFree for any use, including commercial. Results are licensed CC BY 4.0 — please use the attribution \"Source: We > Ultrarich (wegtultrarich.org).\" The API's source code is not open source; view [LICENSE.md](https://wegtultrarich.org/LICENSE.md).\n\nNaming: Write it as `We > Ultrarich` (or `We Are Greater Than The Ultrarich` where > won't work). Use `wegtultrarich` in identifiers. Full guide in [LICENSE.md](https://wegtultrarich.org/LICENSE.md#name--wordmark--all-rights-reserved).\n\n\nContact Support:\n Name: We > Ultrarich Support\n Email: info@wegtultrarich.org",
+      "type": "text/plain"
+    }
+  }
+}

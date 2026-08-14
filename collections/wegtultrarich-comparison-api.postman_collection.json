@@ -1,0 +1,344 @@
+{
+  "item": [
+    {
+      "id": "f745c4d5-bd99-4624-a2d2-5090a97c7a16",
+      "name": "Comparison",
+      "description": {
+        "content": "Compare any wealth expression for two wealths ('yours' and 'theirs') in a single call — get both results as well as the ratio between them.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cc31571c-8a80-4803-91e7-e2206efea8b8",
+          "name": "Full Comparison Of Two Wealths",
+          "request": {
+            "name": "Full Comparison Of Two Wealths",
+            "description": {
+              "content": "Given an expression, two wealths (yours and theirs), and that expression's own parameters, returns the expression's result for both wealths plus the ratio between them — a complete \"them vs. you\" comparison in a single call.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "comparison"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expression",
+                  "value": "<string>",
+                  "description": "(Required) Expression is the wealth expression to compute for both wealths (the crux of this comparison): * `durationOfDailySpend` - also requires `spend` * `heightOfMoneyStack` - also requires `typeOfMoney` * `numberOfItems` - also requires `typeOfItem` (see note above about use of approximate U.S. benchmark prices denominated in USD) * `growthOfCompoundInterest` - also requires `rate`, `frequency`, and `period`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "wealthYours",
+                  "value": "<number>",
+                  "description": "(Required) Wealth Yours is the amount of money of the user (\"your\" wealth) to be compared via the specified expression."
+                },
+                {
+                  "disabled": false,
+                  "key": "wealthTheirs",
+                  "value": "<number>",
+                  "description": "(Required) Wealth Theirs is the amount of money of the ultrarich (\"their\" wealth) to be compared via the specified expression."
+                },
+                {
+                  "disabled": false,
+                  "key": "spend",
+                  "value": "<number>",
+                  "description": "Spend is the amount of money to be spent daily. Required when expression is durationOfDailySpend; ignored otherwise."
+                },
+                {
+                  "disabled": false,
+                  "key": "typeOfMoney",
+                  "value": "<string>",
+                  "description": "Type Of Money is the money to be stacked. Required when expression is heightOfMoneyStack; ignored otherwise. * `usd_1_coin` - Dollar Coins (USD; 2 mm per coin); * `usd_100_bill` - Hundred-Dollar Bills (USD; 0.11 mm per bill); * `cad_1_coin` - Loonies (CAD; 1.95 mm per coin); * `cad_100_bill` - Hundred-Dollar Bills (CAD; 0.0875 mm per bill); * `eur_1_coin` - Euro Coins (EUR; 2.33 mm per coin); * `eur_100_bill` - Hundred-Euro Bills (EUR; 0.12 mm per bill); * `gbp_1_coin` - Pound Coins (GBP; 2.8 mm per coin); * `gbp_100_bill` - Hundred-Pound Bills (GBP; 0.0825 mm per bill); * `cny_1_coin` - Yuan Coins (CNY; 1.85 mm per coin); * `cny_100_bill` - Hundred-Yuan Bills (CNY; 0.1 mm per bill); * `inr_1_coin` - Rupee Coins (INR; 1.45 mm per coin); * `inr_100_bill` - Hundred-Rupee Bills (INR; 0.11 mm per bill); * `krw_1_coin` - Won Coins (KRW; 1.45 mm per coin); * `krw_1000_bill` - Thousand-Won Bills (KRW; 0.1 mm per bill); * `rub_1_coin` - Ruble Coins (RUB; 1.5 mm per coin); * `rub_100_bill` - Hundred-Ruble Bills (RUB; 0.1 mm per bill); * `try_1_coin` - Lira Coins (TRY; 2 mm per coin); * `try_100_bill` - Hundred-Lira Bills (TRY; 0.105 mm per bill); * `chf_1_coin` - Franc Coins (CHF; 1.55 mm per coin); * `chf_100_bill` - Hundred-Franc Bills (CHF; 0.11 mm per bill); * `brl_1_coin` - Real Coins (BRL; 1.95 mm per coin); or * `brl_100_bill` - Hundred-Real Bills (BRL; 0.105 mm per bill).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "typeOfItem",
+                  "value": "<string>",
+                  "description": "Type Of Item is the item to be bought or paid for/off. Required when expression is numberOfItems; ignored otherwise. * `fancy_coffee` - $10 Fancy Coffee * `quick_meal` - $15 Quick Meal * `dinner_with_drinks` - $175 Dinner With Drinks * `iphone` - $1,400 iPhone * `month_of_childcare` - $1,750 Month Of Childcare * `rent_or_mortgage_payment` - $3,000 Rent Or Mortgage Payment * `year_of_low_minimum_wage_salary` - Year Of Low Minimum Wage Salary ($15,080) * `year_of_high_minimum_wage_salary` - Year Of High Minimum Wage Salary ($32,240) * `student_loan_debt` - $40K Student Loan Debt * `car` - $50K Car * `year_of_salary_65k` - Year Of $65,000 Salary * `year_of_salary_100k` - Year Of $100,000 Salary * `luxury_car` - $275K Luxury Car * `house` - $500K House * `yacht` - $800K Yacht * `supercar` - $4M Supercar * `island` - $30M Island * `mansion` - $75M Mansion * `estate_with_a_mega_mansion` - $200M Estate With A Mega-Mansion * `luxury_island` - $300M Luxury Island * `superyacht` - $600M Superyacht\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "rate",
+                  "value": "<float>",
+                  "description": "Rate is the interest rate at which the wealths are compounded. Required when expression is growthOfCompoundInterest; ignored otherwise."
+                },
+                {
+                  "disabled": false,
+                  "key": "frequency",
+                  "value": "<string>",
+                  "description": "Frequency is how often the wealths are compounded (1 Annually; 2 Semiannually; 4 Quarterly; 12 Monthly; 365 Daily). Required when expression is growthOfCompoundInterest; ignored otherwise."
+                },
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<number>",
+                  "description": "Period is the duration of time in years over which the wealths are compounded. Required when expression is growthOfCompoundInterest; ignored otherwise."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63e41ee4-c51f-4ead-a154-be57893786eb",
+              "name": "a JSON object with response data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comparison"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expression",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wealthYours",
+                      "value": "1000000000"
+                    },
+                    {
+                      "key": "wealthTheirs",
+                      "value": "1000000000"
+                    },
+                    {
+                      "key": "spend",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "typeOfMoney",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "typeOfItem",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rate",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "period",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"expression\": \"durationOfDailySpend\",\n    \"resultTheirs\": {\n      \"value\": 273972.602739726,\n      \"unit\": \"years\",\n      \"type\": null,\n      \"phrase\": \"274 Millennia (273,973 Years)\",\n      \"sentence\": \"A person with a wealth of $100,000,000,000 could spend $1,000 every day for 274 millennia (273,973 years)!\",\n      \"scale\": \"That's approximately 1.6 times as long ago as when Homo Sapiens began wearing primitive clothing (≈170K BCE).\"\n    },\n    \"resultYours\": {\n      \"value\": 0.273972602739726,\n      \"unit\": \"years\",\n      \"type\": null,\n      \"phrase\": \"100 Days\",\n      \"sentence\": \"A person with a wealth of $100,000 could spend $1,000 every day for 100 days!\",\n      \"scale\": null\n    },\n    \"ratio\": {\n      \"value\": 1000000,\n      \"phrase\": \"1,000,000 : 1\",\n      \"sentence\": \"Their wealth is 1,000,000 times yours.\",\n      \"scale\": \"That's extreme wealth inequality.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21a2398a-7057-4890-bf4e-58b47d72257f",
+              "name": "a JSON object with error data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comparison"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expression",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wealthYours",
+                      "value": "1000000000"
+                    },
+                    {
+                      "key": "wealthTheirs",
+                      "value": "1000000000"
+                    },
+                    {
+                      "key": "spend",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "typeOfMoney",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "typeOfItem",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rate",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "period",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Their Wealth Missing\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd72e755-3345-418d-8e2e-4b7913e089f8",
+              "name": "rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comparison"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expression",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wealthYours",
+                      "value": "1000000000"
+                    },
+                    {
+                      "key": "wealthTheirs",
+                      "value": "1000000000"
+                    },
+                    {
+                      "key": "spend",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "typeOfMoney",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "typeOfItem",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rate",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "period",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of seconds remaining until the rate-limit window resets.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Too Many Requests\",\n    \"details\": \"Rate limit exceeded. Try again in 60 seconds.\",\n    \"retryAfter\": 60\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wegtultrarich.org/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c779db24-b144-4cdd-bd79-4149958c65b2",
+    "name": "We > Ultrarich Comparison API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "We > Ultrarich (We Are Greater Than The Ultrarich) makes extreme wealth inequality tangible. It presents billionaire and trillionaire fortunes in personalized comparisons: Duration Of Daily Spend (Daily Spending), Height Of Stacked Money (Physical Size), Number Of Items Paid For (Purchasing Power), and Growth Of Compound Interest (Compound Interest).\n\nAn MCP (Model Context Protocol) server exposing these operations as agent tools is available at https://api.wegtultrarich.org/mcp. The server answers both MCP revisions `2026-07-28` and `2025-11-25`.\n\nFree for any use, including commercial. Results are licensed CC BY 4.0 — please use the attribution \"Source: We > Ultrarich (wegtultrarich.org).\" The API's source code is not open source; view [LICENSE.md](https://wegtultrarich.org/LICENSE.md).\n\nNaming: Write it as `We > Ultrarich` (or `We Are Greater Than The Ultrarich` where > won't work). Use `wegtultrarich` in identifiers. Full guide in [LICENSE.md](https://wegtultrarich.org/LICENSE.md#name--wordmark--all-rights-reserved).\n\n\nContact Support:\n Name: We > Ultrarich Support\n Email: info@wegtultrarich.org",
+      "type": "text/plain"
+    }
+  }
+}

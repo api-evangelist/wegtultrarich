@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "We > Ultrarich Discovery API",
+    "version": "1.4.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Available Endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wegtultrarich.org/v1/expressions"
+          },
+          "docs": "Returns an array of routes listing the endpoint uri paths of the four wealth expressions plus the comparison."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

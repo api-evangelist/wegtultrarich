@@ -60,7 +60,7 @@ apis:
     url: https://api.wegtultrarich.org/.well-known/mcp.json
   - type: PostmanCollection
     url: >-
-      https://www.postman.com/wegtultrarich/wegtultrarich-extreme-wealth-api-mcp/collection/6a68bfdcf1d9df57e26c3545
+      https://www.postman.com/wegtultrarich/we-ultrarich-extreme-wealth-api-mcp/collection/6a68bfdcf1d9df57e26c3545
   - type: Documentation
     url: https://api.wegtultrarich.org/README.md#mcp-server
 - aid: wegtultrarich:wegtultrarich-comparison-api
@@ -89,7 +89,7 @@ apis:
     url: https://api.wegtultrarich.org/README.md#quick-start
   - type: PostmanCollection
     url: >-
-      https://www.postman.com/wegtultrarich/wegtultrarich-extreme-wealth-api-mcp-server/collection/kcacxo9/start-here-four-ways-to-understand-extreme-wealth
+      https://www.postman.com/wegtultrarich/we-ultrarich-extreme-wealth-api-mcp-server/collection/kcacxo9/start-here-four-ways-to-understand-extreme-wealth
   - type: Examples
     url: examples/_index.yml
   - type: Arazzo
@@ -112,7 +112,7 @@ apis:
     url: https://api.wegtultrarich.org/README.md#quick-start
   - type: PostmanCollection
     url: >-
-      https://www.postman.com/wegtultrarich/wegtultrarich-extreme-wealth-api-mcp-server/collection/kcacxo9/start-here-four-ways-to-understand-extreme-wealth
+      https://www.postman.com/wegtultrarich/we-ultrarich-extreme-wealth-api-mcp-server/collection/kcacxo9/start-here-four-ways-to-understand-extreme-wealth
   - type: Examples
     url: examples/_index.yml
   - type: Arazzo
@@ -137,7 +137,7 @@ apis:
     url: https://api.wegtultrarich.org/README.md#quick-start
   - type: PostmanCollection
     url: >-
-      https://www.postman.com/wegtultrarich/wegtultrarich-extreme-wealth-api-mcp-server/collection/kcacxo9/start-here-four-ways-to-understand-extreme-wealth
+      https://www.postman.com/wegtultrarich/we-ultrarich-extreme-wealth-api-mcp-server/collection/kcacxo9/start-here-four-ways-to-understand-extreme-wealth
   - type: Examples
     url: examples/_index.yml
   - type: Arazzo
@@ -187,7 +187,7 @@ common:
     url: https://wegtultrarich.org/partners.html
   - type: Postman
     name: We > Ultrarich public Postman workspace
-    url: https://www.postman.com/wegtultrarich/wegtultrarich-extreme-wealth-api-mcp-server/collection/kcacxo9/start-here-four-ways-to-understand-extreme-wealth
+    url: https://www.postman.com/wegtultrarich/we-ultrarich-extreme-wealth-api-mcp-server/collection/kcacxo9/start-here-four-ways-to-understand-extreme-wealth
   - type: TermsOfService
     url: https://wegtultrarich.org/terms-of-use.html
   - type: PrivacyPolicy

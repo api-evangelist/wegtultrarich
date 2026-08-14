@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "We > Ultrarich Comparison API",
+    "version": "1.4.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Comparison",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Full Comparison Of Two Wealths",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wegtultrarich.org/v1/comparison",
+            "params": [
+              {
+                "name": "expression",
+                "value": "",
+                "type": "query",
+                "description": "Expression is the wealth expression to compute for both wealths (the crux of this comparison): * `durationOfDailySpend` - also requires `spend` * `heightOfMoneyStack` - also requires `typeOfMoney` * `numberOfItems` - also requires `typeOfItem` (see note above about use of approximate U.S. benchmark prices denominated in USD) * `growthOfCompoundInterest` - also requires `rate`, `frequency`, and `period`\n"
+              },
+              {
+                "name": "wealthYours",
+                "value": "",
+                "type": "query",
+                "description": "Wealth Yours is the amount of money of the user (\"your\" wealth) to be compared via the specified expression."
+              },
+              {
+                "name": "wealthTheirs",
+                "value": "",
+                "type": "query",
+                "description": "Wealth Theirs is the amount of money of the ultrarich (\"their\" wealth) to be compared via the specified expression."
+              },
+              {
+                "name": "spend",
+                "value": "",
+                "type": "query",
+                "description": "Spend is the amount of money to be spent daily. Required when expression is durationOfDailySpend; ignored otherwise."
+              },
+              {
+                "name": "typeOfMoney",
+                "value": "",
+                "type": "query",
+                "description": "Type Of Money is the money to be stacked. Required when expression is heightOfMoneyStack; ignored otherwise. * `usd_1_coin` - Dollar Coins (USD; 2 mm per coin); * `usd_100_bill` - Hundred-Dollar Bills (USD; 0.11 mm per bill); * `cad_1_coin` - Loonies (CAD; 1.95 mm per coin); * `cad_100_bill` - Hundred-Dollar Bills (CAD; 0.0875 mm per bill); * `eur_1_coin` - Euro Coins (EUR; 2.33 mm per coin); * `eur_100_bill` - Hundred-Euro Bills (EUR; 0.12 mm per bill); * `gbp_1_coin` - Pound Coins (GBP; 2.8 mm per coin); * `gbp_100_bill` - Hundred-Pound Bills (GBP; 0.0825 mm per bill); * `cny_1_coin` - Yuan Coins (CNY; 1.85 mm per coin); * `cny_100_bill` - Hundred-Yuan Bills (CNY; 0.1 mm per bill); * `inr_1_coin` - Rupee Coins (INR; 1.45 mm per coin); * `inr_100_bill` - Hundred-Rupee Bills (INR; 0.11 mm per bill); * `krw_1_coin` - Won Coins (KRW; 1.45 mm per coin); * `krw_1000_bill` - Thousand-Won Bills (KRW; 0.1 mm per bill); * `rub_1_coin` - Ruble Coins (RUB; 1.5 mm per coin); * `rub_100_bill` - Hundred-Ruble Bills (RUB; 0.1 mm per bill); * `try_1_coin` - Lira Coins (TRY; 2 mm per coin); * `try_100_bill` - Hundred-Lira Bills (TRY; 0.105 mm per bill); * `chf_1_coin` - Franc Coins (CHF; 1.55 mm per coin); * `chf_100_bill` - Hundred-Franc Bills (CHF; 0.11 mm per bill); * `brl_1_coin` - Real Coins (BRL; 1.95 mm per coin); or * `brl_100_bill` - Hundred-Real Bills (BRL; 0.105 mm per bill).\n"
+              },
+              {
+                "name": "typeOfItem",
+                "value": "",
+                "type": "query",
+                "description": "Type Of Item is the item to be bought or paid for/off. Required when expression is numberOfItems; ignored otherwise. * `fancy_coffee` - $10 Fancy Coffee * `quick_meal` - $15 Quick Meal * `dinner_with_drinks` - $175 Dinner With Drinks * `iphone` - $1,400 iPhone * `month_of_childcare` - $1,750 Month Of Childcare * `rent_or_mortgage_payment` - $3,000 Rent Or Mortgage Payment * `year_of_low_minimum_wage_salary` - Year Of Low Minimum Wage Salary ($15,080) * `year_of_high_minimum_wage_salary` - Year Of High Minimum Wage Salary ($32,240) * `student_loan_debt` - $40K Student Loan Debt * `car` - $50K Car * `year_of_salary_65k` - Year Of $65,000 Salary * `year_of_salary_100k` - Year Of $100,000 Salary * `luxury_car` - $275K Luxury Car * `house` - $500K House * `yacht` - $800K Yacht * `supercar` - $4M Supercar * `island` - $30M Island * `mansion` - $75M Mansion * `estate_with_a_mega_mansion` - $200M Estate With A Mega-Mansion * `luxury_island` - $300M Luxury Island * `superyacht` - $600M Superyacht\n"
+              },
+              {
+                "name": "rate",
+                "value": "",
+                "type": "query",
+                "description": "Rate is the interest rate at which the wealths are compounded. Required when expression is growthOfCompoundInterest; ignored otherwise."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Frequency is how often the wealths are compounded (1 Annually; 2 Semiannually; 4 Quarterly; 12 Monthly; 365 Daily). Required when expression is growthOfCompoundInterest; ignored otherwise."
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Period is the duration of time in years over which the wealths are compounded. Required when expression is growthOfCompoundInterest; ignored otherwise."
+              }
+            ]
+          },
+          "docs": "Given an expression, two wealths (yours and theirs), and that expression's own parameters, returns the expression's result for both wealths plus the ratio between them — a complete \"them vs. you\" comparison in a single call."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
