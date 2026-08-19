@@ -19,7 +19,7 @@ image: https://wegtultrarich.org/apple-touch-icon.png
 url: https://api.wegtultrarich.org/apis.json
 created: '2026-07-25'
 modified: '2026-08-09'
-specificationVersion: '0.21'
+specificationVersion: '0.23'
 tags:
   - wealth inequality
   - economic inequality
