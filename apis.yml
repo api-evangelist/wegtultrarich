@@ -76,7 +76,7 @@ apis:
     url: https://api.wegtultrarich.org/.well-known/mcp.json
   - type: PostmanCollection
     url: >-
-      https://www.postman.com/wegtultrarich/we-ultrarich-extreme-wealth-api-mcp/collection/6a68bfdcf1d9df57e26c3545
+      https://www.postman.com/wegtultrarich/we-ultrarich-extreme-wealth-api-mcp-server/collection/6a68bfdcf1d9df57e26c3545
   - type: Documentation
     url: https://api.wegtultrarich.org/README.md#mcp-server
 - aid: wegtultrarich:wegtultrarich-comparison-api

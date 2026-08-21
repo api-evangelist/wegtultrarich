@@ -46,7 +46,7 @@ Hosted, no-auth Model Context Protocol server (Streamable HTTP) exposing the sam
 - [M C P](https://api.wegtultrarich.org/mcp)
 - [Tool Crosswalk](mcp/wegtultrarich-tool-crosswalk.yml)
 - [Model Context Protocol](https://api.wegtultrarich.org/.well-known/mcp.json)
-- [Postman Collection](https://www.postman.com/wegtultrarich/we-ultrarich-extreme-wealth-api-mcp/collection/6a68bfdcf1d9df57e26c3545) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Postman Collection](https://www.postman.com/wegtultrarich/we-ultrarich-extreme-wealth-api-mcp-server/collection/6a68bfdcf1d9df57e26c3545) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
 - [Documentation](https://api.wegtultrarich.org/README.md#mcp-server)
 - [Postman Collection](collections/wegtultrarich-comparison-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
 - [Open Collection](collections/wegtultrarich-comparison-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
