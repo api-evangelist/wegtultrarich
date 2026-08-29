@@ -8,6 +8,18 @@ description: >-
   llms.txt and llms-full.txt, a published agent prompt, an APIs.json 0.21 index, and the Spectral ruleset the spec is
   linted against. Published by Blonde Rocket Scientist LLC; results are licensed CC BY 4.0 with a required attribution
   string.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://wegtultrarich.org/apple-touch-icon.png
 # THEIR index, not ours. The `apis_json_self_hosted` check asks whether the
 # provider publishes their own APIs.json, and it reads THIS field — so pointing
