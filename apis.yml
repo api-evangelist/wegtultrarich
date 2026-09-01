@@ -36,13 +36,12 @@ tags:
   - wealth inequality
   - economic inequality
   - Finance
-  - economics
-  - education
-  - journalism
-  - open data
-  - comparison
+  - Economics
+  - Education
+  - Journalism
+  - Open Data
+  - Comparison
   - MCP
-  - model context protocol
   - Agents
 tags_raw:
   - wealth inequality
@@ -68,10 +67,9 @@ apis:
   baseURL: https://api.wegtultrarich.org/mcp
   tags:
   - MCP
-  - model context protocol
   - Agents
   - wealth inequality
-  - comparison
+  - Comparison
   tags_raw:
   - mcp
   - model context protocol
