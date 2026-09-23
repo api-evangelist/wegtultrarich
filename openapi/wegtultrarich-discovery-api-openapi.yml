@@ -1,18 +1,7 @@
 openapi: 3.2.0
 info:
   title: We > Ultrarich Discovery API
-  description: 'We > Ultrarich (We Are Greater Than The Ultrarich) makes extreme wealth inequality tangible. It presents billionaire and trillionaire fortunes in personalized comparisons: Duration Of Daily Spend (Daily Spending), Height Of Stacked Money (Physical Size), Number Of Items Paid For (Purchasing Power), and Growth Of Compound Interest (Compound Interest).
-
-
-    An MCP (Model Context Protocol) server exposing these operations as agent tools is available at https://api.wegtultrarich.org/mcp. The server answers both MCP revisions `2026-07-28` and `2025-11-25`.
-
-
-    Free for any use, including commercial. Results are licensed CC BY 4.0 — please use the attribution "Source: We > Ultrarich (wegtultrarich.org)." The API''s source code is not open source; view [LICENSE.md](https://wegtultrarich.org/LICENSE.md).
-
-
-    Naming: Write it as `We > Ultrarich` (or `We Are Greater Than The Ultrarich` where > won''t work). Use `wegtultrarich` in identifiers. Full guide in [LICENSE.md](https://wegtultrarich.org/LICENSE.md#name--wordmark--all-rights-reserved).
-
-    '
+  description: We > Ultrarich (We Are Greater Than The Ultrarich) makes extreme wealth inequality tangible.
   termsOfService: https://wegtultrarich.org/terms-of-use.html
   version: 1.4.0
   contact:

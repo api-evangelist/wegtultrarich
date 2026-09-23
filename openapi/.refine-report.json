@@ -1,9 +1,7 @@
 {
   "provider": "wegtultrarich",
   "sources": [
-    "wegtultrarich-comparison-api-openapi.yml",
-    "wegtultrarich-discovery-api-openapi.yml",
-    "wegtultrarich-wealth-expression-api-openapi.yml"
+    "_original/wegtultrarich-openapi-original.yml"
   ],
   "outputs": [
     "wegtultrarich-comparison-api-openapi.yml",
@@ -14,10 +12,13 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "wegtultrarich-comparison-api-openapi.yml: upgraded openapi 3.0.4 -> OpenAPI 3.2.0",
-    "wegtultrarich-discovery-api-openapi.yml: upgraded openapi 3.0.4 -> OpenAPI 3.2.0",
-    "wegtultrarich-wealth-expression-api-openapi.yml: upgraded openapi 3.0.4 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "wegtultrarich-openapi-original.yml: upgraded openapi 3.0.4 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "wegtultrarich-comparison-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wegtultrarich-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wegtultrarich-wealth-expression-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
