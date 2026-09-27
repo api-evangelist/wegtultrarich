@@ -49,7 +49,6 @@ specificationVersion: '0.23'
 tags:
   - wealth inequality
   - economic inequality
-  - Finance
   - Economics
   - Education
   - Journalism
@@ -60,7 +59,6 @@ tags:
 tags_raw:
   - wealth inequality
   - economic inequality
-  - finance
   - economics
   - education
   - journalism
@@ -343,3 +341,5 @@ x-evidence:
     "We > Ultrarich" does not slugify cleanly because of the ">". The GitHub repo was
     renamed (GitHub redirects the old path), all 39 artifact files re-prefixed, and the
     old slug registered in the network retired.yml so every URL it published redirects.
+x-tags-removed:
+- Finance
