@@ -1,0 +1,12 @@
+{
+ "url": "https://api.wegtultrarich.org/openapi.yaml",
+ "requested_url": "https://api.wegtultrarich.org/openapi.yaml",
+ "status": 200,
+ "content_type": "text/yaml; charset=utf-8",
+ "bytes": 55989,
+ "sha256": "4c1e254f4c64b807faac2b8a8c79defc0cd0d69fb927d61512989718a794c79f",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
