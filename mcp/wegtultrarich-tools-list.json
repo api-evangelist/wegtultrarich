@@ -1,4 +1,13 @@
 {
+  "endpoint": "https://api.wegtultrarich.org/mcp",
+  "captured": "2026-10-20",
+  "method": "initialize + tools/list (anonymous, no tool called; roadmap#992)",
+  "protocol_version": "2025-06-18",
+  "server_info": {
+    "name": "wegtultrarich",
+    "version": "1.4.2",
+    "title": "We > Ultrarich"
+  },
   "result": {
     "tools": [
       {
@@ -32,7 +41,7 @@
       {
         "name": "height_of_money_stack",
         "title": "Height Of Money Stack",
-        "description": "How high a wealth would stack as physical currency, across 11 currencies. No currency conversion is performed \u2014 typeOfMoney's currency overrides any symbol on wealth.",
+        "description": "How high a wealth would stack as physical currency, across 11 currencies. No currency conversion is performed — typeOfMoney's currency overrides any symbol on wealth.",
         "inputSchema": {
           "type": "object",
           "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -67,7 +76,7 @@
                 "brl_1_coin",
                 "brl_100_bill"
               ],
-              "description": "Money slug. Denomination to stack, across 11 currencies. Coins stack far higher than bills \u2014 pick coins for maximum contrast. The slug's currency overrides any currency given for wealth (no conversion is done). One of: usd_1_coin (Dollar Coins (USD)); usd_100_bill (Hundred-Dollar Bills (USD)); cad_1_coin (Loonies (CAD)); cad_100_bill (Hundred-Dollar Bills (CAD)); eur_1_coin (Euro Coins); eur_100_bill (Hundred-Euro Bills); gbp_1_coin (Pound Coins); gbp_100_bill (Hundred-Pound Bills); cny_1_coin (Yuan Coins); cny_100_bill (Hundred-Yuan Bills); inr_1_coin (Rupee Coins); inr_100_bill (Hundred-Rupee Bills); krw_1_coin (Won Coins); krw_1000_bill (Thousand-Won Bills); rub_1_coin (Ruble Coins); rub_100_bill (Hundred-Ruble Bills); try_1_coin (Lira Coins); try_100_bill (Hundred-Lira Bills); chf_1_coin (Franc Coins); chf_100_bill (Hundred-Franc Bills); brl_1_coin (Real Coins); brl_100_bill (Hundred-Real Bills)"
+              "description": "Money slug. Denomination to stack, across 11 currencies. Coins stack far higher than bills — pick coins for maximum contrast. The slug's currency overrides any currency given for wealth (no conversion is done). One of: usd_1_coin (Dollar Coins (USD)); usd_100_bill (Hundred-Dollar Bills (USD)); cad_1_coin (Loonies (CAD)); cad_100_bill (Hundred-Dollar Bills (CAD)); eur_1_coin (Euro Coins); eur_100_bill (Hundred-Euro Bills); gbp_1_coin (Pound Coins); gbp_100_bill (Hundred-Pound Bills); cny_1_coin (Yuan Coins); cny_100_bill (Hundred-Yuan Bills); inr_1_coin (Rupee Coins); inr_100_bill (Hundred-Rupee Bills); krw_1_coin (Won Coins); krw_1000_bill (Thousand-Won Bills); rub_1_coin (Ruble Coins); rub_100_bill (Hundred-Ruble Bills); try_1_coin (Lira Coins); try_100_bill (Hundred-Lira Bills); chf_1_coin (Franc Coins); chf_100_bill (Hundred-Franc Bills); brl_1_coin (Real Coins); brl_100_bill (Hundred-Real Bills)"
             }
           },
           "required": [
@@ -148,7 +157,7 @@
               "type": "number",
               "exclusiveMinimum": 0,
               "exclusiveMaximum": 1,
-              "description": "Interest rate as a decimal between 0 and 1, exclusive. 0.01 = 1%, 0.05 = 5%. Never clamped: 1 returns \"Rate Invalid (1)\", 2 returns \"Rate Outside Range\"."
+              "description": "Interest rate as a decimal between 0 and 1, exclusive. 0.01 = 1%, 0.05 = 5%. Percentages such as 5 are rejected, not rescaled — convert to 0.05 first."
             },
             "frequency": {
               "type": "string",
@@ -212,7 +221,7 @@
               "type": "string"
             },
             "typeOfMoney": {
-              "description": "heightOfMoneyStack only. Money slug. Denomination to stack, across 11 currencies. Coins stack far higher than bills \u2014 pick coins for maximum contrast. The slug's currency overrides any currency given for wealth (no conversion is done). One of: usd_1_coin (Dollar Coins (USD)); usd_100_bill (Hundred-Dollar Bills (USD)); cad_1_coin (Loonies (CAD)); cad_100_bill (Hundred-Dollar Bills (CAD)); eur_1_coin (Euro Coins); eur_100_bill (Hundred-Euro Bills); gbp_1_coin (Pound Coins); gbp_100_bill (Hundred-Pound Bills); cny_1_coin (Yuan Coins); cny_100_bill (Hundred-Yuan Bills); inr_1_coin (Rupee Coins); inr_100_bill (Hundred-Rupee Bills); krw_1_coin (Won Coins); krw_1000_bill (Thousand-Won Bills); rub_1_coin (Ruble Coins); rub_100_bill (Hundred-Ruble Bills); try_1_coin (Lira Coins); try_100_bill (Hundred-Lira Bills); chf_1_coin (Franc Coins); chf_100_bill (Hundred-Franc Bills); brl_1_coin (Real Coins); brl_100_bill (Hundred-Real Bills)",
+              "description": "heightOfMoneyStack only. Money slug. Denomination to stack, across 11 currencies. Coins stack far higher than bills — pick coins for maximum contrast. The slug's currency overrides any currency given for wealth (no conversion is done). One of: usd_1_coin (Dollar Coins (USD)); usd_100_bill (Hundred-Dollar Bills (USD)); cad_1_coin (Loonies (CAD)); cad_100_bill (Hundred-Dollar Bills (CAD)); eur_1_coin (Euro Coins); eur_100_bill (Hundred-Euro Bills); gbp_1_coin (Pound Coins); gbp_100_bill (Hundred-Pound Bills); cny_1_coin (Yuan Coins); cny_100_bill (Hundred-Yuan Bills); inr_1_coin (Rupee Coins); inr_100_bill (Hundred-Rupee Bills); krw_1_coin (Won Coins); krw_1000_bill (Thousand-Won Bills); rub_1_coin (Ruble Coins); rub_100_bill (Hundred-Ruble Bills); try_1_coin (Lira Coins); try_100_bill (Hundred-Lira Bills); chf_1_coin (Franc Coins); chf_100_bill (Hundred-Franc Bills); brl_1_coin (Real Coins); brl_100_bill (Hundred-Real Bills)",
               "type": "string",
               "enum": [
                 "usd_1_coin",
@@ -303,7 +312,5 @@
         }
       }
     ]
-  },
-  "jsonrpc": "2.0",
-  "id": 1
+  }
 }
