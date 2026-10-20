@@ -45,9 +45,9 @@ response_envelope:
     SDK) or mcp_tool_result.is_error (Anthropic Messages API connector) instead.
 tools:
 - name: duration_of_daily_spend
-  title: Duration Of Daily Spend
   description: How long a wealth would last if a fixed amount were spent every day. Answers "how long
     would it take to spend a billion dollars?"
+  title: Duration Of Daily Spend
   required:
   - wealth
   - spend
@@ -57,9 +57,9 @@ tools:
     openWorldHint: false
   source_operation: openapi/wegtultrarich-openapi-original.yml#durationOfDailySpend
 - name: height_of_money_stack
-  title: Height Of Money Stack
   description: How high a wealth would stack as physical currency, across 11 currencies. No currency conversion
     is performed — typeOfMoney's currency overrides any symbol on wealth.
+  title: Height Of Money Stack
   required:
   - wealth
   - typeOfMoney
@@ -69,9 +69,9 @@ tools:
     openWorldHint: false
   source_operation: openapi/wegtultrarich-openapi-original.yml#heightOfMoneyStack
 - name: number_of_items
-  title: Number Of Items Paid For
   description: How many of one item a wealth could buy or pay off, from coffees to superyachts. Prices
     are approximate U.S. benchmarks in USD.
+  title: Number Of Items Paid For
   required:
   - wealth
   - typeOfItem
@@ -81,8 +81,9 @@ tools:
     openWorldHint: false
   source_operation: openapi/wegtultrarich-openapi-original.yml#numberOfItems
 - name: growth_of_compound_interest
+  description: How much a wealth grows from compound interest alone, untouched, over a period. Answers
+    "how much does a fortune earn while its owner does nothing?"
   title: Growth Of Compound Interest
-  description: How much a wealth grows from compound interest alone, untouched, over a period.
   required:
   - wealth
   - rate
@@ -94,9 +95,10 @@ tools:
     openWorldHint: false
   source_operation: openapi/wegtultrarich-openapi-original.yml#growthOfCompoundInterest
 - name: comparison
+  description: 'Complete "them vs. you": runs one expression for both wealths and returns both results
+    plus the ratio between them. Ideal for questions like "how does my net worth compare to a billionaire''s?"
+    A ratio.value below 1 means the user''s wealth is the larger.'
   title: Full Comparison Of Two Wealths
-  description: Computes any expression for two wealths and returns both results plus a direction-aware
-    ratio in a single call.
   required:
   - expression
   - wealthYours
@@ -174,3 +176,4 @@ tool_quality:
   scored: false
   note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
     from Glimind's agent-readiness audit.
+tools_count: 5
