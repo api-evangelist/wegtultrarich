@@ -1,0 +1,41 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-28'
+method: searched
+source: https://wegtultrarich.org/pricing.html
+sources:
+- https://wegtultrarich.org/pricing.html
+provenance:
+  tool: engine/economics/harvest_pricing.py
+  run: 20261028T161713
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: free
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-28'
+published: false
+note: No numeric price is published on the pricing page; Page states the website, API, and MCP server
+  are free with no paywall or ads; no numeric prices given. Content licensed CC BY 4.0 (results licence,
+  not software).
+plan_count: 1
+plans:
+- name: Free
+  price_text: free
+  period: none
+  included_quota: Website, API, and MCP server; results licensed CC BY 4.0
+rate_limit_statements:
+- 100/min per IP for API and 300/min per IP for MCP
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Free
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
