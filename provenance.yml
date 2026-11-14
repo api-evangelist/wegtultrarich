@@ -5,6 +5,9 @@ artifacts:
   agentic-access/wegtultrarich-agentic-access.yml:
     method: generated
     evidence: declared in the artifact
+  ai-preferences/wegtultrarich-ai-preferences.yml:
+    method: harvested
+    evidence: declared in the artifact
   arazzo/_index.yml:
     method: generated
     evidence: declared in the artifact
@@ -14,6 +17,15 @@ artifacts:
   authentication/wegtultrarich-authentication.yml:
     method: searched
     evidence: declared in the artifact
+  certification/observations-2026-11-10.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
   changelog/wegtultrarich-changelog.yml:
     method: searched
     evidence: declared in the artifact
@@ -41,8 +53,14 @@ artifacts:
   conventions/wegtultrarich-conventions.yml:
     method: searched
     evidence: declared in the artifact
+  data-license/wegtultrarich-data-license.yml:
+    method: harvested
+    evidence: declared in the artifact
   data-model/wegtultrarich-data-model.yml:
     method: derived
+    evidence: declared in the artifact
+  eligibility/wegtultrarich-eligibility.yml:
+    method: harvested
     evidence: declared in the artifact
   errors/wegtultrarich-problem-types.yml:
     method: searched
@@ -92,7 +110,7 @@ artifacts:
   kin/checks-2026-10-30T164151.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -158,6 +176,9 @@ artifacts:
   kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/wegtultrarich-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
@@ -195,6 +216,9 @@ artifacts:
   plans/wegtultrarich-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
+  privacy/wegtultrarich-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   rate-limits/wegtultrarich-rate-limits.yml:
     method: searched
     evidence: declared in the artifact
@@ -221,6 +245,9 @@ artifacts:
     evidence: declared in the artifact
   sla/wegtultrarich-sla.yml:
     method: generated
+    evidence: declared in the artifact
+  terms/wegtultrarich-terms-of-service.yml:
+    method: harvested
     evidence: declared in the artifact
   vocabulary/wegtultrarich-vocabulary.yml:
     method: derived
