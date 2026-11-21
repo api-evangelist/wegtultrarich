@@ -110,7 +110,7 @@ artifacts:
   kin/checks-2026-10-30T164151.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-06T143934.yml:
+  kin/checks-2026-11-13T214628.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -179,6 +179,9 @@ artifacts:
   kin/score-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-13T214628.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/wegtultrarich-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
@@ -241,9 +244,6 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   skills/wegtultrarich-them-vs-you-comparison.md:
-    method: generated
-    evidence: declared in the artifact
-  sla/wegtultrarich-sla.yml:
     method: generated
     evidence: declared in the artifact
   terms/wegtultrarich-terms-of-service.yml:
